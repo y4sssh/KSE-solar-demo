@@ -1,12 +1,5 @@
 import { useMemo, useState } from 'react';
-
-const heroMetrics = [
-  { value: '98%', label: 'Inverter Efficiency' },
-  { value: '6', label: 'Panels for 3.5kW' },
-  { value: '24h', label: 'Response Window' },
-];
-
-const trustChips = ['N-Type Topcon', '30 Yr Warranty', 'Turnkey EPC', 'Net Metering Support'];
+import { useLanguage } from '../LanguageContext';
 
 const particlesSeed = [
   { left: '8%', top: '16%', size: 10, delay: '0s', duration: '11s' },
@@ -22,7 +15,16 @@ const particlesSeed = [
 ];
 
 export default function Hero() {
+  const { t } = useLanguage();
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+
+  const heroMetrics = useMemo(() => [
+    { value: '98%', label: t('hero.inverterEfficiency') },
+    { value: '6', label: t('hero.panelsFor3_5kw') },
+    { value: '24h', label: t('hero.responseWindow') },
+  ], []);
+
+  const trustChips = useMemo(() => [t('hero.nTypeTopcon'), t('hero.yrWarranty'), t('hero.turnkeyEpc'), t('hero.netMeteringSupport')], []);
 
   const particles = useMemo(() => particlesSeed, []);
 
@@ -107,7 +109,7 @@ export default function Hero() {
       <div className="hidden sm:block absolute bottom-0 left-0 w-[26rem] h-[26rem] bg-emerald-200/15 rounded-full blur-3xl animate-blob pointer-events-none" style={{ animationDelay: '8s' }} />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28 w-full">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-16 items-center">
           {/* Left content */}
           <div className="animate-fade-in-up">
             {/* Premium badge */}
@@ -116,35 +118,37 @@ export default function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 shadow-lg shadow-emerald-300/50"></span>
               </span>
-              <span>MNRE Approved Solar EPC</span>
+              <span>{t('hero.mnreApproved')}</span>
               <span className="w-1 h-1 rounded-full bg-emerald-400/60" />
-              <span>Complete Solar Solutions</span>
+              <span>{t('hero.completeSolarSolutions')}</span>
             </div>
 
             <div className="max-w-2xl">
               {/* Category line */}
               <div className="flex items-center gap-2 text-[10px] sm:text-xs uppercase tracking-[0.22em] text-emerald-200/80 font-bold mb-5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-sm shadow-emerald-300/50" />
-                <span>Solar EPC</span>
+                <span>{t('hero.solarEpc')}</span>
                 <span className="w-1 h-px bg-emerald-400/40" />
-                <span>Residential</span>
+                <span>{t('hero.residential')}</span>
                 <span className="w-1 h-px bg-emerald-400/40" />
-                <span>Commercial</span>
+                <span>{t('hero.commercial')}</span>
                 <span className="w-1 h-px bg-emerald-400/40" />
-                <span>Industrial</span>
+                <span>{t('hero.industrial')}</span>
               </div>
 
               {/* Main headline */}
               <h1 className="text-4xl min-[380px]:text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.04] text-white mb-6">
-                <span className="block text-white/95 drop-shadow-sm">Kaustubh Solar</span>
-                <span className="block bg-gradient-to-r from-emerald-200 via-emerald-400 to-yellow-200 bg-clip-text text-transparent drop-shadow-lg">Evolution</span>
+                <span className="block text-white/95 drop-shadow-sm">{t('hero.kaustubhSolar')}</span>
+                <span className="block relative">
+                  <span className="bg-gradient-to-r from-emerald-200 via-emerald-400 via-yellow-200 to-emerald-200 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-x drop-shadow-lg">{t('hero.evolution')}</span>
+                  <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-emerald-400/60 to-transparent animate-pulse-slow" />
+                </span>
               </h1>
 
               {/* Description */}
               <p className="text-base sm:text-lg text-emerald-50/80 mb-9 max-w-xl leading-[1.7] font-medium">
-                <span className="text-white font-bold">Kaustubh Solar Evolution (KSE)</span> — premium solar EPC company delivering 
-                high-efficiency N-Type Topcon bifacial panels, expert turnkey execution, and 30-year performance 
-                warranty across Maharashtra and India.
+                <span className="text-white font-bold">{t('hero.kaustubhSolar')} {t('hero.evolution')} (KSE)</span>
+                {t('hero.description')}
               </p>
             </div>
 
@@ -152,27 +156,31 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 mb-9">
               <a
                 href="#calculator"
-                className="relative inline-flex w-full sm:w-auto justify-center items-center gap-2.5 px-9 py-4.5 bg-gradient-to-br from-emerald-400 to-emerald-600 hover:from-emerald-500 hover:to-emerald-700 text-white font-bold rounded-full shadow-2xl shadow-emerald-500/40 hover:shadow-emerald-500/60 transition-all duration-300 group overflow-hidden"
+                className="relative inline-flex w-full sm:w-auto justify-center items-center gap-2.5 px-9 py-4.5 bg-gradient-to-br from-emerald-400 to-emerald-600 hover:from-emerald-500 hover:to-emerald-700 text-white font-bold rounded-full shadow-2xl shadow-emerald-500/40 hover:shadow-emerald-500/60 transition-all duration-300 group overflow-hidden active:scale-[0.97]"
               >
-                <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="absolute -inset-x-full top-0 h-full w-[200%] bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-[250%] group-hover:translate-x-[250%] transition-transform duration-[1s] ease-in-out pointer-events-none" />
                 <span className="relative z-10 flex items-center gap-2.5">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                   </svg>
-                  Calculate Your Savings
-                  <svg className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  {t('hero.calculateSavings')}
+                  <svg className="w-5 h-5 transition-all duration-300 group-hover:translate-x-1.5 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </span>
               </a>
               <a
                 href="#projects"
-                className="inline-flex w-full sm:w-auto justify-center items-center gap-2.5 px-8 py-4 bg-white/8 backdrop-blur-lg text-white font-bold rounded-full border border-white/20 hover:border-emerald-400/50 hover:bg-white/15 hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-300 group"
+                className="relative inline-flex w-full sm:w-auto justify-center items-center gap-2.5 px-8 py-4 bg-white/8 backdrop-blur-lg text-white font-bold rounded-full border border-white/20 hover:border-emerald-400/50 hover:bg-white/15 hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-300 group overflow-hidden active:scale-[0.97]"
               >
-                <svg className="w-5 h-5 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <span className="absolute -inset-x-full top-0 h-full w-[200%] bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-[250%] group-hover:translate-x-[250%] transition-transform duration-[1s] ease-in-out pointer-events-none" />
+                <svg className="w-5 h-5 text-emerald-300 relative z-10 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
-                View Projects
+                <span className="relative z-10">{t('hero.viewProjects')}</span>
+                <svg className="w-5 h-5 relative z-10 transition-all duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </a>
             </div>
 
@@ -193,11 +201,11 @@ export default function Hero() {
             </div>
 
             {/* Bottom proof stats */}
-            <div className="grid grid-cols-3 gap-4 sm:gap-8 pt-7 border-t border-white/10 max-w-2xl">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8 pt-7 border-t border-white/10 max-w-2xl">
               {[
-                { value: '₹61,200', label: 'Per kW Rate', sub: 'Indicative pricing' },
-                { value: '30 Yrs', label: 'Panel Warranty', sub: 'Performance backed' },
-                { value: '500+', label: 'Projects', sub: 'Across Maharashtra' },
+                { value: '₹61,200', label: t('hero.perKwRate'), sub: t('hero.indicativePricing') },
+                { value: '30 Yrs', label: t('hero.panelWarranty'), sub: t('hero.performanceBacked') },
+                { value: '500+', label: t('hero.projects'), sub: t('hero.acrossMaharashtra') },
               ].map((stat, i) => (
                 <div key={stat.label} className="group relative">
                   {i < 2 && <div className="hidden sm:block absolute right-0 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />}
@@ -219,10 +227,25 @@ export default function Hero() {
               <div className="absolute -inset-8 bg-gradient-to-br from-emerald-400/20 via-emerald-600/10 to-transparent blur-3xl rounded-full animate-pulse-slow" />
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-300/10 via-transparent to-emerald-500/10 blur-3xl rounded-full" />
 
+              {/* Animated energy particles around card */}
+              <span className="absolute -top-2 -right-2 w-3 h-3 bg-emerald-400 rounded-full animate-sparkle-twinkle pointer-events-none" />
+              <span className="absolute -bottom-1 -left-1 w-2 h-2 bg-emerald-400 rounded-full animate-sparkle-twinkle pointer-events-none" style={{ animationDelay: '1.5s' }} />
+
               {/* Main card */}
               <div className="relative bg-white/[0.08] dark:bg-slate-900/40 backdrop-blur-2xl rounded-[2.5rem] border border-white/20 shadow-2xl shadow-emerald-950/50 overflow-hidden group hover:border-emerald-400/40 hover:shadow-3xl hover:shadow-emerald-500/20 transition-all duration-700 hover:-translate-y-3">
+                {/* Animated gradient border overlay */}
+                <div className="absolute -inset-[1px] rounded-[2.5rem] bg-gradient-to-br from-emerald-400/30 via-transparent to-emerald-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none -z-10" />
+                <div className="absolute -inset-[2px] rounded-[2.5rem] bg-gradient-to-r from-emerald-400/0 via-emerald-400/20 to-emerald-400/0 animate-conic-spin opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none -z-10" />
+
+                {/* Energy wave through card */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400/3 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[2s] ease-in-out pointer-events-none" />
+
                 {/* Card top glow */}
                 <div className="absolute -top-20 -left-20 w-40 h-40 bg-emerald-400/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-emerald-500/15 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" style={{ transitionDelay: '150ms' }} />
+
+                {/* Production energy bar at very top */}
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-emerald-500/40 via-emerald-300/60 to-emerald-500/40 animate-pulse-slow z-10" />
                 
                 {/* top image panel */}
                 <div className="relative h-64 sm:h-80 overflow-hidden">
@@ -235,7 +258,7 @@ export default function Hero() {
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                   {/* Featured card overlay */}
-                  <div className="absolute top-4 left-4 right-4 sm:right-auto max-w-[calc(100%-2rem)] sm:max-w-[22rem]">
+                  <div className="absolute top-4 left-4 right-4 sm:right-auto max-w-[calc(100%-2rem)] sm:max-w-[24rem]">
                     <div className="bg-black/40 backdrop-blur-xl rounded-2xl border border-white/15 p-4 shadow-2xl group-hover:-translate-y-1 group-hover:border-emerald-300/40 transition-all duration-700">
                       <div className="flex items-start gap-3">
                         <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white shadow-lg flex-shrink-0 shadow-emerald-500/30">
@@ -244,15 +267,19 @@ export default function Hero() {
                           </svg>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-1">
+                          <div className="flex items-center gap-3 mb-1">
                             <span className="relative flex h-2 w-2">
                               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
                             </span>
-                            <span className="text-[9px] font-black tracking-[0.22em] uppercase text-emerald-200/90">Featured Rooftop EPC</span>
+                            <span className="text-[9px] font-black tracking-[0.22em] uppercase text-emerald-200/90">{t('hero.featuredRooftopEpc')}</span>
+                            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-emerald-500/20 border border-emerald-400/30 rounded text-[8px] font-black text-emerald-300 uppercase tracking-wider">
+                              <span className="w-1 h-1 bg-emerald-400 rounded-full animate-pulse" />
+                              {t('hero.live')}
+                            </span>
                           </div>
-                          <div className="text-[13px] sm:text-[15px] font-black text-white leading-tight">Premium Rooftop Execution</div>
-                          <div className="text-[10px] text-emerald-100/70 mt-1 leading-relaxed">High-output N-Type modules with turnkey delivery.</div>
+                          <div className="text-[13px] sm:text-[15px] font-black text-white leading-tight">{t('hero.premiumRooftopExecution')}</div>
+                          <div className="text-[10px] text-emerald-100/70 mt-1 leading-relaxed">{t('hero.premiumRooftopDesc')}</div>
                         </div>
                         <div className="hidden sm:flex items-center justify-center rounded-xl border border-white/15 bg-black/30 backdrop-blur-sm px-3 py-2 flex-shrink-0">
                           <img src="/images/kse-logo.jpeg" alt="KSE" className="h-8 w-auto" />
@@ -263,19 +290,29 @@ export default function Hero() {
 
                   {/* Bottom badges */}
                   <div className="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3">
-                    <div className="bg-black/40 backdrop-blur-xl rounded-2xl px-5 py-3 sm:px-6 sm:py-4 text-white border border-white/15 shadow-2xl group-hover:bg-black/50 group-hover:border-emerald-400/30 transition-all duration-500">
-                      <div className="text-3xl sm:text-4xl font-black tracking-tighter bg-gradient-to-r from-white to-emerald-200 bg-clip-text text-transparent">3.5<span className="text-xl sm:text-2xl font-bold">kW</span></div>
-                      <div className="text-[9px] font-bold text-emerald-300 uppercase tracking-widest mt-1.5">System Capacity</div>
+                    <div className="bg-black/40 backdrop-blur-xl rounded-2xl px-5 py-3 sm:px-6 sm:py-4 text-white border border-white/15 shadow-2xl group-hover:bg-black/50 group-hover:border-emerald-400/30 group-hover:shadow-emerald-500/20 transition-all duration-500">
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-3xl sm:text-4xl font-black tracking-tighter bg-gradient-to-r from-white to-emerald-200 bg-clip-text text-transparent">3.5</span>
+                        <span className="text-xl sm:text-2xl font-bold text-emerald-300">kW</span>
+                        <span className="ml-1.5 text-[8px] font-bold text-emerald-400/70 uppercase tracking-wider animate-pulse">▼ 4.2%</span>
+                      </div>
+                      <div className="flex items-center gap-2 mt-1.5">
+                        <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                          <div className="h-full w-[72%] bg-gradient-to-r from-emerald-400 to-emerald-300 rounded-full animate-pulse-slow" />
+                        </div>
+                        <span className="text-[9px] font-bold text-emerald-300 uppercase tracking-widest">{t('hero.systemCapacity')}</span>
+                      </div>
                     </div>
-                    <div className="hidden sm:flex bg-black/40 backdrop-blur-xl rounded-2xl px-5 py-3.5 items-center gap-3 shadow-2xl border border-white/15 hover:border-emerald-400/30 transition-all duration-300">
-                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 text-white flex items-center justify-center shadow-lg shadow-emerald-500/20">
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <div className="hidden sm:flex bg-black/40 backdrop-blur-xl rounded-2xl px-5 py-3.5 items-center gap-3 shadow-2xl border border-white/15 hover:border-emerald-400/30 hover:bg-black/50 transition-all duration-300 group/badge">
+                      <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 text-white flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                        <div className="absolute inset-0 rounded-xl bg-emerald-400/30 blur-xl scale-150 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-500" />
+                        <svg className="w-5 h-5 relative" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                       </div>
                       <div>
-                        <div className="text-[13px] font-black tracking-wide text-white">N-Type Topcon</div>
-                        <div className="text-[10px] font-medium text-emerald-200/80">Premium bifacial module</div>
+                        <div className="text-[13px] font-black tracking-wide text-white group-hover/badge:text-emerald-300 transition-colors">{t('hero.nTypeTopconBadge')}</div>
+                        <div className="text-[10px] font-medium text-emerald-200/80">{t('hero.premiumBifacialModule')}</div>
                       </div>
                     </div>
                   </div>
@@ -285,60 +322,100 @@ export default function Hero() {
                 <div className="p-5 sm:p-6 relative">
                   <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
 
+                  {/* Live dashboard header */}
+                  <div className="flex items-center justify-between mb-3 relative z-10">
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                      </span>
+                      <span className="text-[9px] font-black tracking-[0.2em] uppercase text-emerald-300/80">{t('hero.liveDashboard')}</span>
+                    </div>
+                    <span className="text-[8px] font-semibold text-white/40 font-mono">{t('hero.updatedJustNow')}</span>
+                  </div>
+
                   {/* Metrics grid */}
-                  <div className="grid grid-cols-3 gap-3 mb-5 relative z-10">
-                    {heroMetrics.map((item) => (
-                      <div key={item.label} className="rounded-2xl bg-black/20 hover:bg-black/40 transition-all duration-300 backdrop-blur-md border border-white/10 px-2 py-4 text-center group/metric hover:border-emerald-400/30">
-                        <div className="text-xl sm:text-2xl font-black tracking-tight text-white mb-1 group-hover/metric:text-emerald-300 transition-colors">{item.value}</div>
-                        <div className="text-[8px] uppercase tracking-wider text-white/50 font-semibold leading-tight">{item.label}</div>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-5 relative z-10">
+                    {heroMetrics.map((item, idx) => (
+                      <div key={item.label} className="rounded-2xl bg-black/20 hover:bg-black/40 transition-all duration-300 backdrop-blur-md border border-white/10 px-2 py-3 text-center group/metric hover:border-emerald-400/30 hover:shadow-lg hover:shadow-emerald-500/10">
+                        {/* Mini progress bar */}
+                        <div className="h-1 bg-white/5 rounded-full mb-2.5 overflow-hidden">
+                          <div className="h-full bg-gradient-to-r from-emerald-500 to-emerald-300 rounded-full transition-all duration-700" style={{ width: `${[98, 60, 100][idx]}%` }} />
+                        </div>
+                        <div className="relative inline-block">
+                          <div className="absolute inset-0 bg-emerald-400/20 blur-lg scale-150 opacity-0 group-hover/metric:opacity-100 transition-opacity duration-500" />
+                          <div className="text-xl sm:text-2xl font-black tracking-tight text-white mb-1 group-hover/metric:text-emerald-300 transition-colors relative">{item.value}</div>
+                        </div>
+                        <div className="text-[10px] sm:text-[8px] uppercase tracking-wider text-white/50 font-semibold leading-tight">{item.label}</div>
                       </div>
                     ))}
                   </div>
 
                   {/* Feature cards */}
                   <div className="grid sm:grid-cols-2 gap-3.5 relative z-10">
-                    <div className="rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-900/40 border border-emerald-400/30 p-4 shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/20 transition-all duration-300">
-                      <div className="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-emerald-300 font-black mb-3">
-                        <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.381z" clipRule="evenodd" /></svg>
-                        <span>Primary Edge</span>
+                    <div className="group/feature relative rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-900/40 border border-emerald-400/30 p-4 shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/20 transition-all duration-500 hover:-translate-y-1 overflow-hidden">
+                      {/* Sheen sweep */}
+                      <span className="absolute -inset-x-full top-0 h-full w-[200%] bg-gradient-to-r from-transparent via-emerald-200/10 to-transparent -translate-x-[250%] group-hover/feature:translate-x-[250%] transition-transform duration-[1.2s] ease-in-out pointer-events-none" />
+                      {/* Glow ring behind icon */}
+                      <div className="absolute -top-6 -left-6 w-16 h-16 bg-emerald-400/20 rounded-full blur-2xl opacity-0 group-hover/feature:opacity-100 transition-opacity duration-500" />
+                      <div className="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-emerald-300 font-black mb-3 relative">
+                        <span className="relative">
+                          <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.381z" clipRule="evenodd" /></svg>
+                          <span className="absolute inset-0 bg-emerald-400/40 blur-md scale-150 opacity-0 group-hover/feature:opacity-100 transition-opacity duration-500" />
+                        </span>
+                        <span>{t('hero.primaryEdge')}</span>
                       </div>
-                      <div className="text-sm sm:text-base font-black text-white mb-1.5 leading-snug">High-Output N-Type Panels</div>
-                      <p className="text-[10px] sm:text-[11px] font-medium text-emerald-100/70 leading-relaxed">Tier-1 N-Type Topcon bifacial modules engineered for maximum yield.</p>
+                      <div className="text-sm sm:text-base font-black text-white mb-1.5 leading-snug relative">{t('hero.highOutputPanels')}</div>
+                      <p className="text-[10px] sm:text-[11px] font-medium text-emerald-100/70 leading-relaxed relative">{t('hero.highOutputDesc')}</p>
+                      {/* Bottom right energy dot */}
+                      <span className="absolute bottom-2 right-2 w-1.5 h-1.5 bg-emerald-400/40 rounded-full animate-pulse-slow" />
                     </div>
-                    <div className="rounded-2xl bg-black/20 border border-white/10 p-4 hover:bg-white/5 hover:border-emerald-400/20 transition-all duration-300">
-                      <div className="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-slate-400 font-black mb-3">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <span>Execution Promise</span>
+                    <div className="group/feature relative rounded-2xl bg-black/20 border border-white/10 p-4 hover:bg-white/5 hover:border-emerald-400/20 transition-all duration-500 hover:-translate-y-1 overflow-hidden">
+                      {/* Sheen sweep */}
+                      <span className="absolute -inset-x-full top-0 h-full w-[200%] bg-gradient-to-r from-transparent via-emerald-200/8 to-transparent -translate-x-[250%] group-hover/feature:translate-x-[250%] transition-transform duration-[1.2s] ease-in-out pointer-events-none" />
+                      {/* Glow ring behind icon */}
+                      <div className="absolute -top-6 -right-6 w-16 h-16 bg-emerald-400/15 rounded-full blur-2xl opacity-0 group-hover/feature:opacity-100 transition-opacity duration-500" />
+                      <div className="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-slate-400 font-black mb-3 relative">
+                        <span className="relative">
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                          <span className="absolute inset-0 bg-emerald-400/30 blur-md scale-150 opacity-0 group-hover/feature:opacity-100 transition-opacity duration-500" />
+                        </span>
+                        <span>{t('hero.executionPromise')}</span>
                       </div>
-                      <div className="text-sm sm:text-base font-black text-white mb-1.5 leading-snug">Unmatched Turnkey EPC</div>
-                      <p className="text-[10px] sm:text-[11px] font-medium text-slate-400 leading-relaxed">Site-survey to commissioning with full net metering support.</p>
+                      <div className="text-sm sm:text-base font-black text-white mb-1.5 leading-snug relative">{t('hero.unmatchedTurnkey')}</div>
+                      <p className="text-[10px] sm:text-[11px] font-medium text-slate-400 leading-relaxed relative">{t('hero.unmatchedTurnkeyDesc')}</p>
+                      {/* Bottom right energy dot */}
+                      <span className="absolute bottom-2 right-2 w-1.5 h-1.5 bg-emerald-400/30 rounded-full animate-pulse-slow" style={{ animationDelay: '0.5s' }} />
                     </div>
                   </div>
                 </div>
+
               </div>
 
               {/* Floating bottom cards */}
-              <div className="relative z-20 mt-6 hidden xl:grid grid-cols-2 gap-3">
-                <div className="rounded-2xl bg-white/10 backdrop-blur-xl shadow-2xl border border-white/15 px-4 py-3.5 flex items-center gap-3 animate-float hover:bg-white/15 hover:border-emerald-400/30 transition-all duration-300">
-                  <div className="w-11 h-11 rounded-xl bg-emerald-500/15 flex shrink-0 items-center justify-center text-emerald-300 shadow-inner shadow-emerald-500/10">
+              <div className="relative z-20 mt-6 grid grid-cols-2 gap-3">
+                <div className="group/float rounded-2xl bg-white/10 backdrop-blur-xl shadow-2xl border border-white/15 px-4 py-3.5 flex items-center gap-3 animate-float hover:bg-white/15 hover:border-emerald-400/30 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                  <span className="absolute -inset-x-full top-0 h-full w-[200%] bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[250%] group-hover/float:translate-x-[250%] transition-transform duration-[1s] ease-in-out pointer-events-none" />
+                  <div className="relative w-11 h-11 rounded-xl bg-emerald-500/15 flex shrink-0 items-center justify-center text-emerald-300 shadow-inner shadow-emerald-500/10 group-hover/float:bg-emerald-500/25 group-hover/float:text-emerald-200 transition-all duration-300">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
                   </div>
-                  <div className="min-w-0">
-                    <div className="text-sm font-black leading-tight text-white">30 Year Warranty</div>
-                    <div className="mt-0.5 text-[10px] leading-snug text-white/60">Performance backed assurance</div>
+                  <div className="min-w-0 relative">
+                    <div className="text-sm font-black leading-tight text-white group-hover/float:text-emerald-300 transition-colors">{t('hero.yearWarranty30')}</div>
+                    <div className="mt-0.5 text-[10px] leading-snug text-white/60">{t('hero.performanceAssurance')}</div>
                   </div>
                 </div>
-                <div className="rounded-2xl bg-white/10 backdrop-blur-xl shadow-2xl border border-white/15 px-4 py-3.5 flex items-center gap-3 animate-float hover:bg-white/15 hover:border-emerald-400/30 transition-all duration-300" style={{ animationDelay: '1.2s' }}>
-                  <div className="w-11 h-11 rounded-xl bg-emerald-500/15 flex shrink-0 items-center justify-center text-emerald-300 shadow-inner shadow-emerald-500/10">
+                <div className="group/float rounded-2xl bg-white/10 backdrop-blur-xl shadow-2xl border border-white/15 px-4 py-3.5 flex items-center gap-3 animate-float hover:bg-white/15 hover:border-emerald-400/30 hover:-translate-y-1 transition-all duration-300 overflow-hidden" style={{ animationDelay: '1.2s' }}>
+                  <span className="absolute -inset-x-full top-0 h-full w-[200%] bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[250%] group-hover/float:translate-x-[250%] transition-transform duration-[1s] ease-in-out pointer-events-none" />
+                  <div className="relative w-11 h-11 rounded-xl bg-emerald-500/15 flex shrink-0 items-center justify-center text-emerald-300 shadow-inner shadow-emerald-500/10 group-hover/float:bg-emerald-500/25 group-hover/float:text-emerald-200 transition-all duration-300">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                     </svg>
                   </div>
-                  <div className="min-w-0">
-                    <div className="text-sm font-black leading-tight text-white">₹61,200 / kW</div>
-                    <div className="mt-0.5 text-[10px] leading-snug text-white/60">Indicative EPC pricing</div>
+                  <div className="min-w-0 relative">
+                    <div className="text-sm font-black leading-tight text-white group-hover/float:text-emerald-300 transition-colors">{t('hero.pricePerKw')}</div>
+                    <div className="mt-0.5 text-[10px] leading-snug text-white/60">{t('hero.indicativeEpcPricing')}</div>
                   </div>
                 </div>
               </div>

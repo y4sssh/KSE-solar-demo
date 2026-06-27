@@ -1,4 +1,21 @@
+import { useRef, useState, useEffect } from 'react';
+import { useLanguage } from '../LanguageContext';
 import ScrollRevealHeading from './ScrollRevealHeading';
+
+function useInView(threshold = 0.1) {
+  const ref = useRef<HTMLElement>(null!);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setInView(true); obs.disconnect(); }
+    }, { threshold });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, inView] as const;
+}
 
 // Brand logos with authentic colors and roles
 const partners = [
@@ -43,8 +60,11 @@ function LogoBadge({ p }: { p: typeof partners[0] }) {
 }
 
 export default function Clients() {
+  const { t } = useLanguage();
+  const [sectionRef, inView] = useInView(0.04);
+
   return (
-    <section id="clients" className="py-20 lg:py-28 relative overflow-hidden bg-mesh">
+    <section ref={sectionRef} id="clients" className="py-20 lg:py-28 relative overflow-hidden bg-mesh">
       <div className="absolute inset-0 bg-grid-lines opacity-60" />
       <div className="absolute inset-0 bg-dots opacity-40" />
       <div className="absolute inset-0 bg-light-sweep opacity-30" />
@@ -79,24 +99,23 @@ export default function Clients() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className={`text-center max-w-3xl mx-auto mb-14 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 rounded-full text-xs font-bold tracking-wider mb-5">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
-            OUR CLIENTS & PARTNERS
+            {t('clients.ourClients')}
           </div>
           <ScrollRevealHeading
             as="h2"
             className="justify-center text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight mb-4"
             segments={[
-              { text: 'Trusted by' },
-              { text: 'Industry Leaders', accent: true },
+              { text: t('clients.trustedBy') },
+              { text: t('clients.industryLeaders'), accent: true },
             ]}
           />
           <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
-            We proudly partner with India's most trusted Tier-1 solar brands to deliver world-class solutions
-            with manufacturer-backed warranties and support.
+            {t('clients.description')}
           </p>
         </div>
 
@@ -105,36 +124,37 @@ export default function Clients() {
           {partners.map((p, idx) => (
             <div
               key={p.name}
-              className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 shadow-sm hover:shadow-xl hover:shadow-emerald-500/10 hover:border-emerald-200 dark:hover:border-emerald-800 hover:-translate-y-1 transition-all duration-300 text-center animate-float"
-              style={{ animationDelay: `${idx * 0.15}s` }}
+              className={`group bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 shadow-sm hover:shadow-xl hover:shadow-emerald-500/10 hover:border-emerald-200 dark:hover:border-emerald-800 hover:-translate-y-1 transition-all duration-300 animate-fade-in-up relative overflow-hidden ${inView ? 'opacity-100' : 'opacity-0'}`}
+              style={{ animationDelay: `${0.1 + idx * 0.08}s` }}
             >
+              {/* Sheen sweep */}
+              <div className="absolute -inset-x-full top-0 h-full w-[200%] bg-gradient-to-r from-transparent via-emerald-200/10 to-transparent -translate-x-[250%] group-hover:translate-x-[250%] transition-transform duration-[1.2s] ease-in-out pointer-events-none" />
               {/* Logo box */}
-              <div className="h-16 flex items-center justify-center bg-slate-50 dark:bg-slate-800/50 rounded-xl mb-4 group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-500">
+              <div className="h-16 flex items-center justify-center bg-slate-50 dark:bg-slate-800/50 rounded-xl mb-4 group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-500 relative">
                 <LogoBadge p={p} />
               </div>
-              <div className="text-sm font-bold text-slate-900 dark:text-white">{p.name.replace(' SOLAR', ' Solar')}</div>
-              <div className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase mt-1">
-                {p.role}
+              <div className="text-sm font-bold text-slate-900 dark:text-white relative">{p.name.replace(' SOLAR', ' Solar')}</div>
+              <div className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase mt-1 relative">
+                {t('clients.role' + p.role.replace(/\s+/g, ''))}
               </div>
             </div>
           ))}
         </div>
 
         {/* Featured KSE Card */}
-        <div className="bg-gradient-to-br from-emerald-50 via-emerald-50/50 to-white dark:from-emerald-950/30 dark:via-emerald-950/10 dark:to-slate-900 rounded-3xl border border-emerald-100 dark:border-emerald-900/40 overflow-hidden mb-12">
+        <div className={`bg-gradient-to-br from-emerald-50 via-emerald-50/50 to-white dark:from-emerald-950/30 dark:via-emerald-950/10 dark:to-slate-900 rounded-3xl border border-emerald-100 dark:border-emerald-900/40 overflow-hidden mb-12 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '0.3s' }}>
           <div className="grid lg:grid-cols-[340px_1fr] items-center">
             {/* Logo side */}
             <div className="p-8 lg:p-10 flex justify-center">
               <div className="relative bg-white dark:bg-slate-800 rounded-3xl shadow-xl p-10 w-full max-w-[240px] aspect-square flex items-center justify-center">
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-emerald-600 text-white text-[10px] font-bold rounded-full whitespace-nowrap">
-                  TRUSTED EPC
+                  {t('clients.trustedEpc')}
                 </span>
-                  <div className="flex flex-col items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-5xl font-black mb-2" style={{ color: '#00da28' }}>KSE</div>
-                    <div className="text-sm font-medium text-emerald-600">Solar Excellence</div>
-                  </div>
-                </div>
+                  <img
+                    src="/images/kse-logo.jpeg"
+                    alt="Kaustubh Solar Evolution logo"
+                    className="w-full h-full object-contain p-4"
+                  />
               </div>
             </div>
 
@@ -142,24 +162,23 @@ export default function Clients() {
             <div className="p-8 lg:p-10 lg:pl-0">
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="px-3 py-1 bg-emerald-600 text-white text-[10px] font-bold tracking-wider rounded-full uppercase">
-                  ISO 9001 Certified
+                  {t('clients.isoCertified')}
                 </span>
                 <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold tracking-wider rounded-full uppercase">
-                  MNRE Approved
+                  {t('clients.mnreApproved')}
                 </span>
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
-                Kaustubh Solar Evolution (KSE)
+                {t('clients.kseTitle')}
               </h3>
 
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                KSE is a premier solar EPC company delivering N-Type Topcon Bifacial DCR panels, on-grid
-                string inverters, and complete EPC solutions backed by 30-year performance warranty across Maharashtra and India.
+                {t('clients.kseDesc')}
               </p>
 
               <div className="flex flex-wrap gap-2">
-                {['N-Type Topcon 580Wp', 'String Inverters', '30 Year Warranty', 'Bifacial DCR'].map((tag) => (
+                {[t('clients.tagTopcon'), t('clients.tagInverters'), t('clients.tagWarranty'), t('clients.tagBifacial')].map((tag) => (
                   <span key={tag} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 border border-emerald-100 dark:border-emerald-900/40 text-emerald-700 dark:text-emerald-400 text-xs font-semibold rounded-full">
                     <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -173,7 +192,7 @@ export default function Clients() {
         </div>
 
         {/* Auto-scrolling carousel */}
-        <div className="relative">
+        <div className={`relative transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '0.5s' }}>
           <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-white dark:from-slate-900 to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-white dark:from-slate-900 to-transparent z-10 pointer-events-none" />
 
@@ -190,7 +209,7 @@ export default function Clients() {
                   {p.name.replace(' SOLAR', ' Solar')}
                 </div>
                 <div className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase mt-0.5">
-                  {p.role}
+                  {t('clients.role' + p.role.replace(/\s+/g, ''))}
                 </div>
               </div>
             ))}

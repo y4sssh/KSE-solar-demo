@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useLanguage } from '../LanguageContext';
 
 export default function WhatsApp() {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
 
   return (
@@ -20,8 +22,8 @@ export default function WhatsApp() {
                 <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-emerald-600"></span>
               </div>
               <div>
-                <div className="font-bold">KSE Solar Support</div>
-                <div className="text-xs text-emerald-100">Typically replies in minutes</div>
+                <div className="font-bold">{t('whatsapp.supportTitle')}</div>
+                <div className="text-xs text-emerald-100">{t('whatsapp.replyTime')}</div>
               </div>
             </div>
           </div>
@@ -29,20 +31,21 @@ export default function WhatsApp() {
           {/* Body */}
           <div className="p-5 bg-slate-50 dark:bg-slate-800/50">
             <div className="bg-white dark:bg-slate-900 rounded-2xl rounded-tl-none p-4 shadow-sm mb-3 max-w-[85%]">
-              <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                Hi there! Interested in solar? Get a free quote for your home or business. How can we help?
+                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                {t('whatsapp.greeting')}
               </p>
             </div>
             <a
               href="https://wa.me/919876543210"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-2xl transition-colors"
+              className="relative flex items-center justify-center gap-2 w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-2xl transition-all duration-300 group overflow-hidden active:scale-[0.97]"
             >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <span className="absolute -inset-x-full top-0 h-full w-[200%] bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[250%] group-hover:translate-x-[250%] transition-transform duration-[1s] ease-in-out pointer-events-none" />
+              <svg className="w-5 h-5 relative" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
-              Start Chat on WhatsApp
+              <span className="relative">{t('whatsapp.startChat')}</span>
             </a>
           </div>
         </div>
@@ -51,8 +54,8 @@ export default function WhatsApp() {
       {/* Button */}
       <button
         onClick={() => setOpen(!open)}
-        aria-label="Chat on WhatsApp"
-        className="relative w-14 h-14 bg-emerald-500 hover:bg-emerald-600 rounded-full shadow-2xl shadow-emerald-500/50 flex items-center justify-center transition-all hover:scale-110 animate-pulse-glow"
+        aria-label={t('whatsapp.ariaLabel')}
+        className="relative w-14 h-14 bg-emerald-500 hover:bg-emerald-600 rounded-full shadow-2xl shadow-emerald-500/50 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-emerald-500/70 active:scale-[0.93] animate-pulse-glow"
       >
         {open ? (
           <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>

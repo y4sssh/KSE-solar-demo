@@ -1,4 +1,6 @@
 import { useState, useEffect, createContext, useContext } from 'react';
+import { LanguageProvider } from './LanguageContext';
+import translations from './translations';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -53,6 +55,7 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <LanguageProvider translations={translations}>
       <div className="min-h-screen overflow-x-hidden bg-transparent text-slate-900 dark:text-slate-100 transition-colors duration-300 relative">
         {/* All background effects wrapped in z-0 layer */}
         <div className="fixed inset-0 pointer-events-none z-0" style={{ isolation: 'isolate' }}>
@@ -103,11 +106,11 @@ function App() {
                   width: `${i % 6 === 0 ? 5 : i % 4 === 0 ? 4 : i % 3 === 0 ? 3 : 2}px`,
                   height: `${i % 6 === 0 ? 5 : i % 4 === 0 ? 4 : i % 3 === 0 ? 3 : 2}px`,
                   background: i % 3 === 0
-                    ? 'radial-gradient(circle, rgba(179, 255, 187, 0.95), rgba(0, 218, 40, 0.35))'
+                    ? 'radial-gradient(circle, rgba(255, 255, 255, 1), rgba(200, 255, 210, 0.6))'
                     : i % 3 === 1
-                    ? 'radial-gradient(circle, rgba(128, 255, 141, 0.9), rgba(0, 166, 24, 0.3))'
-                    : 'radial-gradient(circle, rgba(255, 255, 255, 0.85), rgba(68, 232, 68, 0.25))',
-                  boxShadow: `0 0 ${8 + (i % 5) * 5}px rgba(0, 218, 40, 0.55)`,
+                    ? 'radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(220, 255, 225, 0.5))'
+                    : 'radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(240, 255, 245, 0.4))',
+                  boxShadow: `0 0 ${12 + (i % 5) * 8}px rgba(255, 255, 255, 0.7)`,
                   animation: `sparkle-twinkle ${1.5 + (i % 6) * 0.7}s ease-in-out ${i * 0.35}s infinite`,
                 }}
               />
@@ -124,23 +127,23 @@ function App() {
                   width: `${i % 6 === 0 ? 6 : i % 5 === 0 ? 5 : i % 4 === 0 ? 4 : i % 3 === 0 ? 3 : 2}px`,
                   height: `${i % 6 === 0 ? 6 : i % 5 === 0 ? 5 : i % 4 === 0 ? 4 : i % 3 === 0 ? 3 : 2}px`,
                   background: i % 5 === 0
-                    ? 'rgba(0, 218, 40, 0.8)'
+                    ? 'rgba(255, 255, 255, 0.95)'
                     : i % 5 === 1
-                    ? 'rgba(68, 232, 68, 0.7)'
+                    ? 'rgba(220, 255, 225, 0.9)'
                     : i % 5 === 2
-                    ? 'rgba(128, 255, 141, 0.6)'
+                    ? 'rgba(200, 255, 210, 0.85)'
                     : i % 5 === 3
-                    ? 'rgba(179, 255, 187, 0.55)'
-                    : 'rgba(0, 166, 24, 0.5)',
+                    ? 'rgba(240, 255, 245, 0.9)'
+                    : 'rgba(255, 255, 255, 0.8)',
                   boxShadow: i % 6 === 0
-                    ? '0 0 20px rgba(0, 218, 40, 0.55)'
+                    ? '0 0 24px rgba(255, 255, 255, 0.7)'
                     : i % 5 === 0
-                    ? '0 0 14px rgba(68, 232, 68, 0.4)'
+                    ? '0 0 18px rgba(200, 255, 210, 0.6)'
                     : i % 4 === 0
-                    ? '0 0 10px rgba(128, 255, 141, 0.3)'
+                    ? '0 0 14px rgba(220, 255, 225, 0.5)'
                     : i % 3 === 0
-                    ? '0 0 6px rgba(179, 255, 187, 0.2)'
-                    : '0 0 4px rgba(0, 166, 24, 0.15)',
+                    ? '0 0 10px rgba(240, 255, 245, 0.4)'
+                    : '0 0 6px rgba(255, 255, 255, 0.35)',
                   animation: `float ${2 + (i % 7) * 1}s ease-in-out ${i * 0.15}s infinite`,
                 }}
               />
@@ -165,6 +168,7 @@ function App() {
         <Footer />
         <WhatsApp />
       </div>
+      </LanguageProvider>
     </ThemeContext.Provider>
   );
 }
