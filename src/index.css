@@ -136,6 +136,19 @@
     gap: 0.4rem !important;
   }
 
+  /* Re-enable heading text animations on mobile (overrides mobile-performance-lite) */
+  #home .animate-gradient-x {
+    display: inline-block !important;
+    animation: gradient-x 3.5s ease-in-out infinite !important;
+  }
+  #home .animate-pulse-slow {
+    animation: pulse-slow 5s ease-in-out infinite !important;
+  }
+  #home .animate-fade-in-up {
+    opacity: 0 !important;
+    animation: fadeInUp 0.6s ease-out forwards !important;
+  }
+
   /* Stats glass frame tighter */
   .hero-stats > div {
     padding: 0.4rem !important;
