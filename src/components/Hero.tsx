@@ -125,19 +125,19 @@ export default function Hero() {
        {!shouldReduceEffects && <div className="hidden sm:block absolute top-16 right-0 w-64 h-64 bg-emerald-300/10 rounded-full blur-2xl opacity-60 pointer-events-none" style={{ contain: 'strict' }} />}
        {!shouldReduceEffects && <div className="hidden sm:block absolute bottom-0 left-0 w-64 h-64 bg-emerald-200/10 rounded-full blur-2xl opacity-50 pointer-events-none" style={{ contain: 'strict' }} />}
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28 w-full">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28 w-full hero-content">
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-16 items-center">
           {/* Left content */}
           <div className="animate-fade-in-up">
             {/* Premium badge */}
-<div className="inline-flex max-w-full flex-wrap items-center gap-2 px-4 py-2.5 bg-emerald-400/10 border border-emerald-400/25 text-emerald-200 rounded-full text-sm font-semibold mb-6 shadow-lg shadow-emerald-500/5 transition-all duration-300">
-                <span className="flex h-3 w-3 items-center justify-center">
-                  <span className="inline-block rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
-                </span>
-                <span className="text-sm">{t('hero.mnreApproved')}</span>
-                <span className="w-1 h-1 rounded-full bg-emerald-400/60" />
-                <span className="text-sm">{t('hero.completeSolarSolutions')}</span>
-              </div>
+<div className="inline-flex max-w-full flex-wrap items-center gap-2 px-4 py-2.5 bg-emerald-400/10 border border-emerald-400/25 text-emerald-200 rounded-full text-sm font-semibold mb-6 shadow-lg shadow-emerald-500/5 transition-all duration-300 badge">
+              <span className="flex h-3 w-3 items-center justify-center">
+                <span className="inline-block rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+              </span>
+              <span className="text-sm">{t('hero.mnreApproved')}</span>
+              <span className="w-1 h-1 rounded-full bg-emerald-400/60" />
+              <span className="text-sm">{t('hero.completeSolarSolutions')}</span>
+            </div>
 
             <div className="max-w-2xl">
 {/* Category line */}
@@ -212,19 +212,19 @@ export default function Hero() {
              </div>
 
 {/* Bottom proof stats */}
-             <div className="grid grid-cols-3 gap-3 pt-6 border-t border-white/10 max-w-lg">
-               {[
-                 { value: '₹61,200', label: t('hero.perKwRate') },
-                 { value: '30 Yrs', label: t('hero.panelWarranty') },
-                 { value: '500+', label: t('hero.projects') },
-               ].map((stat) => (
-                 <div key={stat.label} className="text-center">
-                   <div className="text-lg font-black text-emerald-300 mb-1">{stat.value}</div>
-                   <div className="text-[10px] text-emerald-50/60 font-medium">{stat.label}</div>
-                 </div>
-               ))}
-             </div>
-          </div>
+              <div className="grid grid-cols-3 gap-2 pt-4 border-t border-white/10 max-w-lg hero-stats">
+                {[
+                  { value: '₹61,200', label: t('hero.perKwRate') },
+                  { value: '30 Yrs', label: t('hero.panelWarranty') },
+                  { value: '500+', label: t('hero.projects') },
+                ].map((stat) => (
+                  <div key={stat.label} className="text-center">
+                    <div className="text-base font-black text-emerald-300 mb-1">{stat.value}</div>
+                    <div className="text-[9px] text-emerald-50/60 font-medium">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
           {/* Right content - premium visual stack */}
           <div className="relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
