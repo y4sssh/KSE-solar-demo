@@ -214,13 +214,14 @@ export default function Hero() {
 {/* Bottom proof stats */}
               <div className="grid grid-cols-3 gap-2 pt-4 border-t border-white/10 max-w-lg hero-stats">
                 {[
-                  { value: '₹61,200', label: t('hero.perKwRate') },
-                  { value: '30 Yrs', label: t('hero.panelWarranty') },
-                  { value: '500+', label: t('hero.projects') },
+                  { value: '₹61,200', label: t('hero.perKwRate'), desc: t('hero.indicativeEpcPricing') },
+                  { value: '30 Yrs', label: t('hero.panelWarranty'), desc: t('hero.performanceAssurance') },
+                  { value: '500+', label: t('hero.projects'), desc: t('hero.acrossMaharashtra') },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center">
-                    <div className="text-base font-black text-emerald-300 mb-1">{stat.value}</div>
-                    <div className="text-[9px] text-emerald-50/60 font-medium">{stat.label}</div>
+                    <div className="text-base font-black text-emerald-300 mb-0.5">{stat.value}</div>
+                    <div className="text-[9px] text-emerald-50/60 font-medium leading-tight">{stat.label}</div>
+                    <div className="text-[7px] text-emerald-50/40 font-medium mt-0.5 leading-tight">{stat.desc}</div>
                   </div>
                 ))}
               </div>
