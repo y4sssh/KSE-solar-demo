@@ -20,6 +20,21 @@
   .hero-glow, .hero-particles, .hero-orbits { display: none !important; }
 }
 
+/* Background image responsive fixes */
+@media (max-width: 639px) {
+  /* Ensure proper 100vh fallback for mobile */
+  .hero-section { height: 100vh; height: 100svh; }
+  
+  /* Mobile background - adjust object fit */
+  .hero-bg-mobile {
+    object-fit: cover;
+    object-position: center center;
+  }
+  
+  /* Prevent background image zoom on mobile */
+  .hero-video-zoom { animation: none !important; }
+}
+
 /* Hide scrollbar for horizontal snap sections on mobile */
 @media (max-width: 639px) {
   .snap-x::-webkit-scrollbar {

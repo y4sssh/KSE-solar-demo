@@ -50,7 +50,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative pt-20 sm:pt-20 lg:pt-24 overflow-hidden min-h-[100svh] flex items-center"
+      className="hero-section relative pt-20 sm:pt-20 lg:pt-24 overflow-hidden min-h-[100svh] flex items-center"
       onMouseMove={shouldReduceEffects ? undefined : handleMouseMove}
       onMouseLeave={shouldReduceEffects ? undefined : handleMouseLeave}
     >
@@ -71,10 +71,10 @@ export default function Hero() {
             <source src="https://videos.pexels.com/video-files/7042201/7042201-uhd_4096_1974_30fps.mp4" type="video/mp4" />
           </video>
         )}
-        {(shouldReduceEffects || !videoLoaded) && (
+{(shouldReduceEffects || !videoLoaded) && (
           <img
             src={heroPoster}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="hero-bg-mobile absolute inset-0 w-full h-full object-cover"
             alt="Solar panels"
             loading="eager"
             decoding="async"
