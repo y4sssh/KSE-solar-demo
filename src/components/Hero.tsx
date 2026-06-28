@@ -50,12 +50,13 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="hero-section relative pt-20 sm:pt-20 lg:pt-24 overflow-hidden min-h-[100svh] flex items-center"
+      className="hero-section relative pt-20 sm:pt-20 lg:pt-24 overflow-hidden h-screen sm:min-h-[100svh] flex items-center"
+      style={{ minHeight: '100vh' }}
       onMouseMove={shouldReduceEffects ? undefined : handleMouseMove}
       onMouseLeave={shouldReduceEffects ? undefined : handleMouseLeave}
     >
       {/* Video background */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden" style={{ minHeight: '100vh' }}>
         {!shouldReduceEffects && (
           <video
             className={`absolute inset-0 w-full h-full object-cover hero-video-zoom transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}

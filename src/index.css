@@ -23,12 +23,31 @@
 /* Background image responsive fixes */
 @media (max-width: 639px) {
   /* Ensure proper 100vh fallback for mobile */
-  .hero-section { height: 100vh; height: 100svh; }
+  .hero-section { 
+    height: 100vh !important; 
+    min-height: 100vh !important;
+    background-image: url('/images/solar-panels.jpg') !important;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
   
-  /* Mobile background - adjust object fit */
+  /* Mobile background - force full coverage */
   .hero-bg-mobile {
-    object-fit: cover;
-    object-position: center center;
+    object-fit: cover !important;
+    -o-object-fit: cover !important;
+    object-position: center center !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100vh !important;
+    position: absolute !important;
+  }
+  
+  /* Force the background wrapper to have height */
+  .hero-section > div {
+    min-height: 100vh !important;
   }
   
   /* Prevent background image zoom on mobile */
