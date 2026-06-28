@@ -168,29 +168,29 @@ export default function Hero() {
               </p>
             </div>
 
-{/* CTA Buttons */}
-              <div className="flex flex-row gap-2.5 mb-6 sm:flex-row sm:gap-3 sm:mb-8">
+{/* CTA Buttons — same as PC */}
+              <div className="flex flex-col gap-3 mb-8">
                 <a
                   href="#calculator"
-                  className="inline-flex flex-1 justify-center items-center gap-1.5 px-4 py-2.5 sm:px-6 sm:py-4 sm:gap-2.5 bg-gradient-to-br from-emerald-400 to-emerald-600 text-white font-bold rounded-full shadow-xl shadow-emerald-500/30 transition-all duration-300"
+                  className="inline-flex w-full justify-center items-center gap-2.5 px-6 py-4 bg-gradient-to-br from-emerald-400 to-emerald-600 text-white font-bold rounded-full shadow-xl shadow-emerald-500/30 transition-all duration-300"
                 >
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                   </svg>
-                  <span className="text-xs sm:text-sm">{t('hero.calculateSavings')}</span>
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <span>{t('hero.calculateSavings')}</span>
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </a>
                 <a
                   href="#projects"
-                  className="inline-flex flex-1 justify-center items-center gap-1.5 px-4 py-2.5 sm:px-6 sm:py-4 sm:gap-2.5 bg-white/10 text-white font-bold rounded-full border border-white/20 transition-all duration-300"
+                  className="inline-flex w-full justify-center items-center gap-2.5 px-6 py-4 bg-white/10 text-white font-bold rounded-full border border-white/20 transition-all duration-300"
                 >
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg className="w-5 h-5 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                   </svg>
-                  <span className="text-xs sm:text-sm">{t('hero.viewProjects')}</span>
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <span>{t('hero.viewProjects')}</span>
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </a>

@@ -4,10 +4,6 @@
 
 /* Very small phones (< 380px) */
 @media (max-width: 379px) {
-  .hero-section h1 {
-    font-size: 1.3rem !important;
-    line-height: 1.05 !important;
-  }
   [class*="text-3xl"]:not(.hero-section *) {
     font-size: 1.5rem !important;
   }
@@ -17,16 +13,6 @@
   section > .relative > .px-4 {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
-  }
-  .hero-section a[href="#calculator"],
-  .hero-section a[href="#projects"] {
-    padding: 0.35rem 0.6rem !important;
-    font-size: 0.6rem !important;
-  }
-  .hero-section a[href="#calculator"] svg,
-  .hero-section a[href="#projects"] svg {
-    width: 0.7rem !important;
-    height: 0.7rem !important;
   }
 }
 
@@ -79,84 +65,6 @@
   .hero-section .grid > div:last-child {
     display: none !important;
   }
-  
-  /* Hero headline - same feel as PC, scaled for mobile */
-  .hero-section h1 { 
-    font-size: 1.75rem !important; 
-    line-height: 1.1 !important;
-    margin-bottom: 0.5rem !important;
-  }
-  .hero-section h1 .bg-gradient-to-r {
-    background-size: 150% auto !important;
-  }
-  
-  /* Hero description */
-  .hero-section p { 
-    font-size: 0.75rem !important; 
-    margin-bottom: 0.75rem !important;
-    line-height: 1.5 !important;
-  }
-  
-  /* Badge - smaller on mobile */
-  .hero-section .badge { 
-    font-size: 0.6rem !important; 
-    padding: 0.25rem 0.5rem !important;
-    margin-bottom: 0.5rem !important;
-    gap: 0.35rem !important;
-  }
-  .hero-section .badge .text-sm {
-    font-size: 0.6rem !important;
-  }
-  .hero-section .badge .h-2\.5 {
-    width: 0.5rem !important;
-    height: 0.5rem !important;
-  }
-  
-  /* Category labels above h1 - smaller */
-  .hero-section .text-xs.uppercase.tracking-wider {
-    font-size: 0.55rem !important;
-    margin-bottom: 0.35rem !important;
-  }
-  .hero-section .text-xs.uppercase.tracking-wider > span:first-child {
-    width: 0.4rem !important;
-    height: 0.4rem !important;
-  }
-  
-  /* CTA buttons - compact, side-by-side, professional */
-  .hero-section a[href="#calculator"],
-  .hero-section a[href="#projects"] {
-    width: auto !important;
-    padding: 0.5rem 1rem !important;
-    font-size: 0.75rem !important;
-    white-space: nowrap !important;
-    flex: 1 !important;
-  }
-  .hero-section a[href="#calculator"] svg,
-  .hero-section a[href="#projects"] svg {
-    width: 0.9rem !important;
-    height: 0.9rem !important;
-  }
-  
-  /* Trust chips - compact */
-  .hero-section .flex.flex-wrap.gap-2.mb-8 {
-    gap: 0.3rem !important;
-    margin-bottom: 0.75rem !important;
-  }
-  .hero-section .flex.flex-wrap.gap-2.mb-8 > span {
-    font-size: 0.6rem !important;
-    padding: 0.2rem 0.5rem !important;
-    gap: 0.25rem !important;
-  }
-  .hero-section .flex.flex-wrap.gap-2.mb-8 > span svg {
-    width: 0.55rem !important;
-    height: 0.55rem !important;
-  }
-  
-  /* Stats grid - compact */
-  .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 0.25rem; padding-top: 0.4rem !important; }
-  .hero-stats div { text-align: center; }
-  .hero-stats div > div:first-child { font-size: 0.85rem !important; }
-  .hero-stats div > div:last-child { font-size: 0.5rem !important; }
   
   /* Visual card */
   .hero-card { margin-top: 1rem; max-width: 95vw; }
