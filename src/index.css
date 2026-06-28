@@ -43,7 +43,7 @@
     justify-content: center !important;
   }
   
-  /* Stack grid for mobile */
+  /* Stack grid for mobile - force single column */
   .hero-section .grid {
     display: flex !important;
     flex-direction: column !important;
