@@ -275,6 +275,40 @@
   }
 }
 
+/* Extra small text scaling on mobile — bump tiny font sizes */
+@media (max-width: 639px) {
+  .text-\[8px\] {
+    font-size: 9px !important;
+  }
+  .text-\[9px\],
+  .text-\[10px\]:not(.text-\[10px\]\.dark *) {
+    font-size: 11px !important;
+  }
+  /* FAQ answer max-height adjustment */
+  [class*="max-h-\[300px\]"] {
+    max-height: 500px !important;
+  }
+  /* Range slider – larger touch target for the thumb */
+  input[type="range"]::-webkit-slider-thumb {
+    width: 28px !important;
+    height: 28px !important;
+    margin-top: -10px !important;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 28px !important;
+    height: 28px !important;
+    border: none;
+    border-radius: 50%;
+    background: #00da28;
+    cursor: pointer;
+  }
+  /* Modal close button on mobile */
+  .fixed button.w-10.h-10 {
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+  }
+}
+
 /* Touch device optimizations - increase tap targets */
 @media (hover: none) and (pointer: coarse) {
   button, 
