@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useCallback, useRef, useEffect } from 'react';
 import { useLanguage } from '../LanguageContext';
 import { useMobileProfile } from '../hooks/useMobileProfile';
 
@@ -10,9 +10,6 @@ const particlesSeed = [
   { left: '56%', top: '14%', size: 9, delay: '1.2s', duration: '12s' },
   { left: '66%', top: '60%', size: 7, delay: '2.8s', duration: '9s' },
   { left: '78%', top: '22%', size: 11, delay: '0.5s', duration: '15s' },
-  { left: '86%', top: '70%', size: 8, delay: '3s', duration: '12s' },
-  { left: '72%', top: '42%', size: 6, delay: '1.4s', duration: '10s' },
-  { left: '46%', top: '34%', size: 9, delay: '2.5s', duration: '13s' },
 ];
 
 export default function Hero() {
@@ -21,6 +18,7 @@ export default function Hero() {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const heroPoster = '/images/solar-panels.jpg';
   const heroFeatureImage = '/images/solar-kit.jpg';
+  const rafRef = useRef<number | null>(null);
 
   const heroMetrics = useMemo(() => [
     { value: '98%', label: t('hero.inverterEfficiency') },
@@ -32,13 +30,18 @@ export default function Hero() {
 
   const particles = useMemo(() => particlesSeed, []);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
     if (shouldReduceEffects) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-    setMouse({ x, y });
-  };
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      setMouse({ x, y });
+    });
+  }, [shouldReduceEffects]);
+
+  useEffect(() => () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); }, []);
 
   const handleMouseLeave = () => setMouse({ x: 0, y: 0 });
 
@@ -97,30 +100,29 @@ export default function Hero() {
         </div>
       )}
 
-      {/* particles */}
-      {!shouldReduceEffects && (
-        <div className="absolute inset-0 pointer-events-none">
-          {particles.map((p, idx) => (
-            <span
-              key={idx}
-              className="hero-particle"
-              style={{
-                left: p.left,
-                top: p.top,
-                width: `${p.size}px`,
-                height: `${p.size}px`,
-                animationDelay: p.delay,
-                animationDuration: p.duration,
-                transform: `translate3d(${mouse.x * ((idx % 4) + 1) * 4}px, ${mouse.y * ((idx % 3) + 1) * 4}px, 0)`,
-              }}
-            />
-          ))}
-        </div>
-      )}
+{/* particles */}
+       {!shouldReduceEffects && (
+         <div className="absolute inset-0 pointer-events-none" style={{ contain: 'strict' }}>
+           {particles.map((p, idx) => (
+             <span
+               key={idx}
+               className="hero-particle opacity-60"
+               style={{
+                 left: p.left,
+                 top: p.top,
+                 width: `${p.size}px`,
+                 height: `${p.size}px`,
+                 animationDelay: p.delay,
+                 animationDuration: p.duration,
+               }}
+             />
+           ))}
+         </div>
+       )}
 
-      {/* foreground blobs */}
-      {!shouldReduceEffects && <div className="hidden sm:block absolute top-16 right-0 w-[30rem] h-[30rem] bg-emerald-300/15 rounded-full blur-3xl animate-blob pointer-events-none" />}
-      {!shouldReduceEffects && <div className="hidden sm:block absolute bottom-0 left-0 w-[26rem] h-[26rem] bg-emerald-200/15 rounded-full blur-3xl animate-blob pointer-events-none" style={{ animationDelay: '8s' }} />}
+{/* foreground blobs */}
+       {!shouldReduceEffects && <div className="hidden sm:block absolute top-16 right-0 w-64 h-64 bg-emerald-300/10 rounded-full blur-2xl opacity-60 pointer-events-none" style={{ contain: 'strict' }} />}
+       {!shouldReduceEffects && <div className="hidden sm:block absolute bottom-0 left-0 w-64 h-64 bg-emerald-200/10 rounded-full blur-2xl opacity-50 pointer-events-none" style={{ contain: 'strict' }} />}
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28 w-full">
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-16 items-center">

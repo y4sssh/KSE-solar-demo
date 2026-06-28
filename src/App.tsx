@@ -54,8 +54,8 @@ function App() {
   }, [theme]);
 
   const toggleTheme = () => setTheme((t) => (t === 'light' ? 'dark' : 'light'));
-  const sparkleCount = shouldReduceEffects ? 0 : 24;
-  const orbCount = shouldReduceEffects ? 0 : 60;
+  const sparkleCount = shouldReduceEffects ? 0 : 8;
+  const orbCount = shouldReduceEffects ? 0 : 20;
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -72,37 +72,13 @@ function App() {
             <div className="absolute top-0 right-0 w-[250px] h-[250px] opacity-35 dark:opacity-25 bg-corner-glow-tr" />
             <div className="absolute bottom-0 right-0 w-[300px] h-[300px] opacity-40 dark:opacity-30 bg-corner-glow-br" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-core-radiant rounded-full" />
-            {!shouldReduceEffects && (
-              <>
-                <div className="absolute -top-40 -left-40 w-[700px] h-[700px] bg-emerald-300/60 dark:bg-emerald-500/35 rounded-full blur-3xl animate-blob" />
-                <div className="absolute -bottom-40 -right-40 w-[700px] h-[700px] bg-emerald-200/60 dark:bg-emerald-400/35 rounded-full blur-3xl animate-blob" style={{ animationDelay: '8s' }} />
-                <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-emerald-100/55 dark:bg-emerald-300/32 rounded-full blur-3xl animate-blob" style={{ animationDelay: '14s' }} />
-                <div className="absolute bottom-1/3 left-1/5 w-[450px] h-[450px] bg-emerald-200/50 dark:bg-emerald-400/30 rounded-full blur-3xl animate-blob" style={{ animationDelay: '5s' }} />
-                <div className="absolute top-1/3 left-[60%] w-[400px] h-[400px] bg-emerald-400/45 dark:bg-emerald-300/25 rounded-full blur-3xl animate-blob" style={{ animationDelay: '11s' }} />
-                <div className="absolute inset-0 bg-light-sweep" />
-                <div className="absolute top-[15%] right-[15%] w-14 h-14 animate-diamond-float">
-                  <div className="w-full h-full rotate-45 border-2 border-emerald-300/55 dark:border-emerald-500/40 rounded-sm bg-emerald-300/10 dark:bg-emerald-500/8" />
-                </div>
-                <div className="absolute bottom-[20%] left-[12%] w-10 h-10 animate-diamond-float" style={{ animationDelay: '-5s' }}>
-                  <div className="w-full h-full rotate-45 border-2 border-emerald-300/45 dark:border-emerald-500/30 rounded-sm bg-emerald-300/8 dark:bg-emerald-500/6" />
-                </div>
-                <div className="absolute top-[55%] left-[70%] w-8 h-8 animate-diamond-float" style={{ animationDelay: '-10s' }}>
-                  <div className="w-full h-full rotate-45 border-[1.5px] border-emerald-300/50 dark:border-emerald-500/35 rounded-sm" />
-                </div>
-                <div className="absolute top-[35%] left-[5%] w-12 h-12 animate-diamond-float" style={{ animationDelay: '-3s' }}>
-                  <div className="w-full h-full rotate-45 border-2 border-emerald-300/40 dark:border-emerald-500/28 rounded-sm bg-emerald-300/8 dark:bg-emerald-500/6" />
-                </div>
-                <div className="absolute top-[18%] right-[10%] w-40 h-40 animate-ring-float">
-                  <div className="w-full h-full rounded-full border-[3px] border-emerald-300/50 dark:border-emerald-500/35" />
-                  <div className="absolute rounded-full border-[3px] border-emerald-300/35 dark:border-emerald-500/25" style={{ inset: '1.4rem' }} />
-                  <div className="absolute rounded-full bg-emerald-300/12 dark:bg-emerald-500/10 blur-sm" style={{ inset: '0.5rem' }} />
-                </div>
-                <div className="absolute bottom-[22%] left-[8%] w-28 h-28 animate-ring-float" style={{ animationDelay: '-7s' }}>
-                  <div className="w-full h-full rounded-full border-2 border-emerald-300/45 dark:border-emerald-500/30" />
-                  <div className="absolute rounded-full border-2 border-emerald-300/30 dark:border-emerald-500/20" style={{ inset: '1rem' }} />
-                </div>
-              </>
-            )}
+{!shouldReduceEffects && (
+               <>
+                 <div className="absolute -top-20 -left-20 w-64 h-64 bg-emerald-300/40 dark:bg-emerald-500/20 rounded-full blur-3xl" style={{ contain: 'strict' }} />
+                 <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-emerald-200/35 dark:bg-emerald-400/20 rounded-full blur-2xl" style={{ contain: 'strict' }} />
+                 {!shouldReduceEffects && <div className="absolute inset-0 bg-light-sweep" style={{ contain: 'strict' }} />}
+               </>
+             )}
             {sparkleCount > 0 && (
               <div className="absolute inset-0 overflow-hidden">
                 {[...Array(sparkleCount)].map((_, i) => (
@@ -126,41 +102,24 @@ function App() {
                 ))}
               </div>
             )}
-            {orbCount > 0 && (
-              <div className="absolute inset-0" style={{ perspective: '600px' }}>
-                {[...Array(orbCount)].map((_, i) => (
-                  <span
-                    key={i}
-                    className="absolute rounded-full"
-                    style={{
-                      left: `${1 + (i * 2 + 5) % 98}%`,
-                      top: `${2 + (i * 4 + 3) % 96}%`,
-                      width: `${i % 6 === 0 ? 6 : i % 5 === 0 ? 5 : i % 4 === 0 ? 4 : i % 3 === 0 ? 3 : 2}px`,
-                      height: `${i % 6 === 0 ? 6 : i % 5 === 0 ? 5 : i % 4 === 0 ? 4 : i % 3 === 0 ? 3 : 2}px`,
-                      background: i % 5 === 0
-                        ? 'rgba(255, 255, 255, 0.95)'
-                        : i % 5 === 1
-                        ? 'rgba(220, 255, 225, 0.9)'
-                        : i % 5 === 2
-                        ? 'rgba(200, 255, 210, 0.85)'
-                        : i % 5 === 3
-                        ? 'rgba(240, 255, 245, 0.9)'
-                        : 'rgba(255, 255, 255, 0.8)',
-                      boxShadow: i % 6 === 0
-                        ? '0 0 24px rgba(255, 255, 255, 0.7)'
-                        : i % 5 === 0
-                        ? '0 0 18px rgba(200, 255, 210, 0.6)'
-                        : i % 4 === 0
-                        ? '0 0 14px rgba(220, 255, 225, 0.5)'
-                        : i % 3 === 0
-                        ? '0 0 10px rgba(240, 255, 245, 0.4)'
-                        : '0 0 6px rgba(255, 255, 255, 0.35)',
-                      animation: `float ${2 + (i % 7) * 1}s ease-in-out ${i * 0.15}s infinite`,
-                    }}
-                  />
-                ))}
-              </div>
-            )}
+{orbCount > 0 && (
+               <div className="absolute inset-0" style={{ contain: 'strict' }}>
+                 {[...Array(orbCount)].map((_, i) => (
+                   <span
+                     key={i}
+                     className="absolute rounded-full"
+                     style={{
+                       left: `${1 + (i * 2 + 5) % 98}%`,
+                       top: `${2 + (i * 4 + 3) % 96}%`,
+                       width: '3px',
+                       height: '3px',
+                       background: 'rgba(255, 255, 255, 0.8)',
+                       opacity: 0.5,
+                     }}
+                   />
+                 ))}
+               </div>
+             )}
           </div>
           <Navbar />
           <main className="relative z-10">

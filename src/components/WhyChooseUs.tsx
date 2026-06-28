@@ -82,31 +82,26 @@ export default function WhyChooseUs() {
       <div className="absolute inset-0 bg-corner-glow-tl opacity-50" />
       <div className="absolute inset-0 bg-corner-glow-br opacity-50" />
 
-      <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-100/50 dark:bg-emerald-500/5 rounded-full blur-3xl animate-blob" />
-      <div className="absolute bottom-0 right-0 w-[350px] h-[350px] bg-emerald-200/30 dark:bg-emerald-500/5 rounded-full blur-3xl animate-blob" style={{ animationDelay: '-6s' }} />
-      <div className="absolute top-1/3 right-1/4 w-[250px] h-[250px] bg-emerald-300/20 dark:bg-emerald-500/5 rounded-full blur-3xl animate-energy-wave" />
+<div className="absolute top-0 left-0 w-72 h-72 bg-emerald-100/30 dark:bg-emerald-500/5 rounded-full blur-2xl -z-10" style={{ contain: 'strict' }} />
+       <div className="absolute bottom-0 right-0 w-64 h-64 bg-emerald-200/20 dark:bg-emerald-500/5 rounded-full blur-2xl -z-10" />
+       <div className="absolute top-1/3 right-1/4 w-48 h-48 bg-emerald-300/10 dark:bg-emerald-500/5 rounded-full blur-xl -z-10" />
 
-      <div className="absolute inset-0 pointer-events-none">
-        {[
-          { left: '20%', top: '25%', size: 7, delay: '0s', dur: '11s' },
-          { left: '60%', top: '60%', size: 9, delay: '1.5s', dur: '13s' },
-          { left: '80%', top: '20%', size: 6, delay: '3s', dur: '10s' },
-        ].map((p, i) => (
-          <span key={i} className="hero-particle" style={{ left: p.left, top: p.top, width: `${p.size}px`, height: `${p.size}px`, animationDelay: p.delay, animationDuration: p.dur }} />
-        ))}
-      </div>
+<div className="absolute inset-0 pointer-events-none">
+         {[
+           { left: '20%', top: '25%', size: 6, delay: '0s', dur: '18s' },
+           { left: '60%', top: '60%', size: 5, delay: '2s', dur: '20s' },
+         ].map((p, i) => (
+           <span key={i} className="hero-particle" style={{ left: p.left, top: p.t, width: `${p.size}px`, height: `${p.size}px`, animationDelay: p.delay, animationDuration: p.dur }} />
+         ))}
+       </div>
 
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(5)].map((_, i) => (
-          <span key={i} className="absolute bg-emerald-400 rounded-full animate-sparkle-twinkle" style={{ left: `${10 + i * 18}%`, top: `${15 + i * 12}%`, width: `${2 + i % 2}px`, height: `${2 + i % 2}px`, animationDelay: `${i * 0.5}s`, opacity: 0.5 }} />
-        ))}
-      </div>
+       <div className="absolute inset-0 pointer-events-none" style={{ contain: 'strict' }}>
+         {[...Array(3)].map((_, i) => (
+           <span key={i} className="absolute bg-emerald-400 rounded-full animate-sparkle-twinkle" style={{ left: `${10 + i * 24}%`, top: `${15 + i * 20}%`, width: '2px', height: '2px', animationDelay: `${i * 0.6}s`, opacity: 0.4 }} />
+         ))}
+</div>
 
-      <div className="absolute top-[40%] left-[8%] w-3.5 h-3.5 border border-emerald-400/40 rotate-45 animate-diamond-float pointer-events-none" />
-      <div className="absolute bottom-[30%] right-[10%] w-3 h-3 border border-emerald-500/35 rotate-45 animate-diamond-float pointer-events-none" style={{ animationDelay: '-10s' }} />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-100/40 dark:bg-emerald-500/5 rounded-full blur-3xl animate-blob" style={{ animationDelay: '7s' }} />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-16 items-start">
           {/* Left side */}
           <div>

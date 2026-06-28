@@ -500,10 +500,10 @@ body {
 /* Hero cinematic effects */
 .hero-vignette {
   background:
-    radial-gradient(circle at 20% 20%, rgba(0, 218, 40, 0.18), transparent 32%),
-    radial-gradient(circle at 80% 25%, rgba(68, 232, 68, 0.12), transparent 26%),
-    radial-gradient(circle at 50% 100%, rgba(0, 166, 24, 0.25), transparent 36%),
-    linear-gradient(135deg, rgba(2, 6, 23, 0.9) 0%, rgba(3, 18, 12, 0.72) 42%, rgba(6, 78, 59, 0.38) 100%);
+    radial-gradient(circle at 20% 20%, rgba(0, 218, 40, 0.12), transparent 28%),
+    radial-gradient(circle at 80% 25%, rgba(68, 232, 68, 0.08), transparent 22%),
+    radial-gradient(circle at 50% 100%, rgba(0, 166, 24, 0.18), transparent 32%),
+    linear-gradient(135deg, rgba(2, 6, 23, 0.85) 0%, rgba(3, 18, 12, 0.65) 42%, rgba(6, 78, 59, 0.32) 100%);
 }
 
 .hero-solar-rays {
@@ -546,28 +546,27 @@ body {
 }
 
 .hero-video-zoom {
-  animation: hero-video-zoom 18s ease-in-out infinite alternate;
+  animation: hero-video-zoom 24s ease-in-out infinite alternate;
 }
 
 @keyframes hero-video-zoom {
-  from { transform: scale(1.02); }
-  to { transform: scale(1.12); }
+  from { transform: scale(1.01); }
+  to { transform: scale(1.04); }
 }
 
 .hero-particle {
   position: absolute;
   border-radius: 9999px;
-  background: radial-gradient(circle, rgba(179, 255, 187,0.95) 0%, rgba(0, 218, 40,0.55) 45%, rgba(0, 218, 40,0) 75%);
-  box-shadow: 0 0 20px rgba(68, 232, 68, 0.4);
-  animation: hero-particle-float 12s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(179, 255, 187,0.8) 0%, rgba(0, 218, 40,0.4) 45%, rgba(0, 218, 40,0) 75%);
+  animation: hero-particle-float 18s ease-in-out infinite;
   will-change: transform, opacity;
 }
 
 @keyframes hero-particle-float {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(0.9); opacity: 0.2; }
-  25% { transform: translate3d(14px, -28px, 0) scale(1); opacity: 0.55; }
-  50% { transform: translate3d(-8px, -46px, 0) scale(1.12); opacity: 0.8; }
-  75% { transform: translate3d(10px, -18px, 0) scale(0.98); opacity: 0.45; }
+  0%, 100% { transform: translate3d(0, 0, 0) scale(0.9); opacity: 0.15; }
+  25% { transform: translate3d(12px, -22px, 0) scale(1); opacity: 0.4; }
+  50% { transform: translate3d(-6px, -35px, 0) scale(1.08); opacity: 0.6; }
+  75% { transform: translate3d(8px, -14px, 0) scale(0.95); opacity: 0.3; }
 }
 
 .hero-orbit-ring {
@@ -711,7 +710,7 @@ body {
   100% { background-position: 0% 0%, 100% 100%, 50% 50%; }
 }
 .animate-ambient-drift {
-  animation: ambient-drift 30s ease-in-out infinite;
+  animation: ambient-drift 35s ease-in-out infinite;
 }
 
 /* Floating ring - faster, more motion */
@@ -941,15 +940,14 @@ body {
 
 /* Twinkling sparkle stars */
 @keyframes sparkle-twinkle {
-  0%, 100% { opacity: 0.15; transform: scale(0.6); }
-  25% { opacity: 0.9; transform: scale(1.2); }
-  50% { opacity: 0.3; transform: scale(0.8); }
-  75% { opacity: 0.7; transform: scale(1.1); }
+   0%, 100% { opacity: 0.1; transform: scale(0.5); }
+   25% { opacity: 0.7; transform: scale(1); }
+   50% { opacity: 0.2; transform: scale(0.6); }
+   75% { opacity: 0.5; transform: scale(0.9); }
 }
 .animate-sparkle-twinkle {
-  animation: sparkle-twinkle 2s ease-in-out infinite;
+  animation: sparkle-twinkle 3s ease-in-out infinite;
   animation-delay: var(--delay, 0s);
-  will-change: opacity, transform;
 }
 
 @media (max-width: 820px) {

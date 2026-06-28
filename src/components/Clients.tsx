@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useLanguage } from '../LanguageContext';
 import ScrollRevealHeading from './ScrollRevealHeading';
-import { useMobileProfile } from '../hooks/useMobileProfile';
 
 function useInView(threshold = 0.1) {
   const ref = useRef<HTMLElement>(null!);
@@ -97,7 +96,6 @@ function LogoBadge({ p, showLogo, small }: { p: typeof partners[0]; showLogo: bo
 
 export default function Clients() {
   const { t } = useLanguage();
-  const { shouldReduceEffects } = useMobileProfile();
   const [sectionRef, inView] = useInView(0.04);
 
   return (
@@ -111,30 +109,26 @@ export default function Clients() {
       <div className="absolute inset-0 bg-corner-glow-tl opacity-50" />
       <div className="absolute inset-0 bg-corner-glow-br opacity-50" />
 
-      <div className="absolute top-20 left-0 w-96 h-96 bg-emerald-100/40 dark:bg-emerald-500/5 rounded-full blur-3xl animate-blob" />
-      <div className="absolute bottom-20 right-0 w-80 h-80 bg-emerald-200/30 dark:bg-emerald-500/5 rounded-full blur-3xl animate-blob" style={{ animationDelay: '-8s' }} />
-      <div className="absolute top-1/2 right-1/3 w-60 h-60 bg-emerald-300/20 dark:bg-emerald-500/5 rounded-full blur-3xl animate-energy-wave" />
+<div className="absolute top-20 left-0 w-72 h-72 bg-emerald-100/30 dark:bg-emerald-500/5 rounded-full blur-3xl -z-10" style={{ contain: 'strict' }} />
+       <div className="absolute bottom-20 right-0 w-64 h-64 bg-emerald-200/20 dark:bg-emerald-500/5 rounded-full blur-2xl -z-10" />
 
-      <div className="absolute inset-0 pointer-events-none">
-        {[
-          { l: '22%', t: '28%', s: 7, d: '0s', du: '11s' },
-          { l: '68%', t: '55%', s: 8, d: '2s', du: '13s' },
-          { l: '40%', t: '75%', s: 6, d: '1.5s', du: '10s' },
-        ].map((p, i) => (
-          <span key={i} className="hero-particle" style={{ left: p.l, top: p.t, width: `${p.s}px`, height: `${p.s}px`, animationDelay: p.d, animationDuration: p.du }} />
-        ))}
-      </div>
+<div className="absolute inset-0 pointer-events-none" style={{ contain: 'strict' }}>
+         {[
+           { l: '22%', t: '28%', s: 7, d: '0s', du: '18s' },
+           { l: '68%', t: '55%', s: 8, d: '2s', du: '20s' },
+           { l: '40%', t: '75%', s: 6, d: '1.5s', du: '16s' },
+         ].map((p, i) => (
+           <span key={i} className="hero-particle" style={{ left: p.l, top: p.t, width: `${p.s}px`, height: `${p.s}px`, animationDelay: p.d, animationDuration: p.du }} />
+         ))}
+       </div>
 
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(5)].map((_, i) => (
-          <span key={i} className="absolute bg-emerald-400 rounded-full animate-sparkle-twinkle" style={{ left: `${14 + i * 16}%`, top: `${16 + i * 13}%`, width: `${2 + i % 2}px`, height: `${2 + i % 2}px`, animationDelay: `${i * 0.4}s`, opacity: 0.5 }} />
-        ))}
-      </div>
+<div className="absolute inset-0 pointer-events-none" style={{ contain: 'strict' }}>
+         {[...Array(3)].map((_, i) => (
+           <span key={i} className="absolute bg-emerald-400 rounded-full animate-sparkle-twinkle" style={{ left: `${14 + i * 24}%`, top: `${16 + i * 20}%`, width: '2px', height: '2px', animationDelay: `${i * 0.5}s`, opacity: 0.5 }} />
+         ))}
+</div>
 
-      <div className="absolute top-[32%] right-[12%] w-3.5 h-3.5 border border-emerald-400/40 rotate-45 animate-diamond-float pointer-events-none" />
-      <div className="absolute bottom-[28%] left-[10%] w-3 h-3 border border-emerald-500/35 rotate-45 animate-diamond-float pointer-events-none" style={{ animationDelay: '-11s' }} />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className={`text-center max-w-3xl mx-auto mb-14 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 rounded-full text-xs font-bold tracking-wider mb-5">
@@ -180,7 +174,7 @@ export default function Clients() {
         <div className="sm:hidden mb-8">
           <div className="overflow-x-auto -mx-4 px-4 scrollbar-none snap-x snap-mandatory">
             <div className="flex gap-3 pb-4">
-              {partners.map((p, idx) => (
+              {partners.map((p) => (
                 <div
                   key={`float-${p.name}`}
                   className="flex-shrink-0 w-[130px] snap-start bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-700 shadow text-center"
@@ -278,8 +272,9 @@ export default function Clients() {
           100% { transform: translateX(-50%); }
         }
         .animate-partner-scroll {
-          animation: partner-scroll 28s linear infinite;
+          animation: partner-scroll 45s linear infinite;
           width: max-content;
+          will-change: transform;
         }
         .animate-partner-scroll:hover {
           animation-play-state: paused;

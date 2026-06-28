@@ -132,10 +132,10 @@ export default function About() {
       <div className="absolute inset-0 bg-corner-glow-tr opacity-40" />
       <div className="absolute inset-0 bg-core-radiant" />
 
-      {/* Animated blobs */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-100/30 dark:bg-emerald-500/5 rounded-full blur-3xl animate-blob -z-10" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-emerald-200/20 dark:bg-emerald-500/5 rounded-full blur-3xl animate-blob -z-10" style={{ animationDelay: '-8s' }} />
-      <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-emerald-300/15 dark:bg-emerald-500/5 rounded-full blur-3xl animate-energy-wave -z-10" />
+{/* Animated blobs */}
+       <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-100/20 dark:bg-emerald-500/5 rounded-full blur-3xl -z-10" style={{ contain: 'strict' }} />
+       <div className="absolute bottom-0 left-0 w-72 h-72 bg-emerald-200/15 dark:bg-emerald-500/5 rounded-full blur-3xl -z-10" />
+       <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-emerald-300/10 dark:bg-emerald-500/5 rounded-full blur-2xl -z-10" />
 
       {/* Hero-style glow particles */}
       <div className="absolute inset-0 pointer-events-none -z-10">
@@ -151,17 +151,15 @@ export default function About() {
         ))}
       </div>
 
-      {/* Sparkle stars */}
-      <div className="absolute inset-0 pointer-events-none -z-10">
-        {[...Array(8)].map((_, i) => (
-          <span key={i} className="absolute bg-emerald-400 rounded-full animate-sparkle-twinkle" style={{ left: `${6 + i * 13}%`, top: `${10 + (i * 10) % 80}%`, width: `${1.5 + (i % 2) * 0.5}px`, height: `${1.5 + (i % 2) * 0.5}px`, animationDelay: `${i * 0.3}s`, opacity: 0.6 }} />
-        ))}
-      </div>
+{/* Sparkle stars */}
+       <div className="absolute inset-0 pointer-events-none -z-10" style={{ contain: 'strict' }}>
+         {[...Array(4)].map((_, i) => (
+           <span key={i} className="absolute bg-emerald-400 rounded-full animate-sparkle-twinkle" style={{ left: `${6 + i * 24}%`, top: `${10 + i * 20}%`, width: '2px', height: '2px', animationDelay: `${i * 0.5}s`, opacity: 0.5 }} />
+         ))}
+       </div>
 
-      {/* Floating geometric shape */}
-      <div className="absolute top-[30%] right-[12%] w-4 h-4 border border-emerald-400/40 rotate-45 animate-diamond-float pointer-events-none -z-10" />
-      <div className="absolute bottom-[25%] left-[10%] w-3 h-3 border border-emerald-500/30 rotate-45 animate-diamond-float pointer-events-none -z-10" style={{ animationDelay: '-8s' }} />
-      <div className="absolute top-[60%] right-[25%] w-3.5 h-3.5 border border-emerald-400/35 rotate-45 animate-diamond-float pointer-events-none -z-10" style={{ animationDelay: '-4s' }} />
+{/* Floating geometric shape */}
+       <div className="absolute top-[32%] right-[12%] w-3 h-3 border border-emerald-400/40 rotate-45 pointer-events-none -z-10" style={{ contain: 'strict' }} />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
