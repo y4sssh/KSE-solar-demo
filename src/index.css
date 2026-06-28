@@ -2,6 +2,37 @@
 
 /* Mobile-first responsive adjustments */
 @media (max-width: 639px) {
+  /* Hero section - full viewport height */
+  .hero-section {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    background-image: url('/images/solar-panels.jpg') !important;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+  
+  /* Force background wrapper height */
+  .hero-section > div {
+    min-height: 100vh !important;
+  }
+  
+  /* Mobile background image */
+  .hero-bg-mobile {
+    object-fit: cover !important;
+    -o-object-fit: cover !important;
+    object-position: center center !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100vh !important;
+  }
+  
+  /* Prevent animations on mobile */
+  .hero-video-zoom { animation: none !important; }
+  .hero-glow, .hero-particles, .hero-orbits { display: none !important; }
+  
   /* Increase touch targets */
   .hero-section h1 { font-size: 2rem !important; line-height: 1.2; }
   .hero-section .badge { font-size: 0.875rem !important; padding: 0.75rem 1rem !important; }
@@ -16,42 +47,8 @@
   .hero-card { margin-top: 2rem; max-width: 90vw; }
   .hero-card img { height: 12rem !important; }
   
-  /* Reduce visual clutter */
-  .hero-glow, .hero-particles, .hero-orbits { display: none !important; }
-}
-
-/* Background image responsive fixes */
-@media (max-width: 639px) {
-  /* Ensure proper 100vh fallback for mobile */
-  .hero-section { 
-    height: 100vh !important; 
-    min-height: 100vh !important;
-    background-image: url('/images/solar-panels.jpg') !important;
-    background-size: cover !important;
-    -webkit-background-size: cover !important;
-    -moz-background-size: cover !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-  }
-  
-  /* Mobile background - force full coverage */
-  .hero-bg-mobile {
-    object-fit: cover !important;
-    -o-object-fit: cover !important;
-    object-position: center center !important;
-    width: 100% !important;
-    height: 100% !important;
-    min-height: 100vh !important;
-    position: absolute !important;
-  }
-  
-  /* Force the background wrapper to have height */
-  .hero-section > div {
-    min-height: 100vh !important;
-  }
-  
-  /* Prevent background image zoom on mobile */
-  .hero-video-zoom { animation: none !important; }
+  /* Hide decorative elements on mobile */
+  .hero-energy-lines, .hero-grid-fade { display: none !important; }
 }
 
 /* Hide scrollbar for horizontal snap sections on mobile */
