@@ -1,5 +1,25 @@
 @import "tailwindcss";
 
+/* Mobile-first responsive adjustments */
+@media (max-width: 639px) {
+  /* Increase touch targets */
+  .hero-section h1 { font-size: 2rem !important; line-height: 1.2; }
+  .hero-section .badge { font-size: 0.875rem !important; padding: 0.75rem 1rem !important; }
+  
+  /* Stats grid mobile */
+  .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+  .hero-stats div { text-align: center; }
+  .hero-stats div > div:first-child { font-size: 1.125rem !important; }
+  .hero-stats div > div:last-child { font-size: 0.625rem !important; }
+  
+  /* Visual card mobile */
+  .hero-card { margin-top: 2rem; max-width: 90vw; }
+  .hero-card img { height: 12rem !important; }
+  
+  /* Reduce visual clutter */
+  .hero-glow, .hero-particles, .hero-orbits { display: none !important; }
+}
+
 /* Hide scrollbar for horizontal snap sections on mobile */
 @media (max-width: 639px) {
   .snap-x::-webkit-scrollbar {

@@ -129,27 +129,27 @@ export default function Hero() {
           {/* Left content */}
           <div className="animate-fade-in-up">
             {/* Premium badge */}
-<div className="inline-flex max-w-full flex-wrap items-center gap-2.5 px-4 py-2 sm:px-5 bg-emerald-400/10 border border-emerald-400/25 text-emerald-200 rounded-full text-xs sm:text-sm font-semibold mb-7 shadow-lg shadow-emerald-500/5 hover:border-emerald-400/40 transition-all duration-500">
-               <span className="relative flex h-2.5 w-2.5">
-                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
-               </span>
-               <span>{t('hero.mnreApproved')}</span>
-               <span className="w-1 h-1 rounded-full bg-emerald-400/60" />
-               <span>{t('hero.completeSolarSolutions')}</span>
-             </div>
+<div className="inline-flex max-w-full flex-wrap items-center gap-2 px-4 py-2.5 bg-emerald-400/10 border border-emerald-400/25 text-emerald-200 rounded-full text-sm font-semibold mb-6 shadow-lg shadow-emerald-500/5 transition-all duration-300">
+                <span className="flex h-3 w-3 items-center justify-center">
+                  <span className="inline-block rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+                </span>
+                <span className="text-sm">{t('hero.mnreApproved')}</span>
+                <span className="w-1 h-1 rounded-full bg-emerald-400/60" />
+                <span className="text-sm">{t('hero.completeSolarSolutions')}</span>
+              </div>
 
             <div className="max-w-2xl">
-              {/* Category line */}
-              <div className="flex flex-wrap items-center gap-2 text-[10px] sm:text-xs uppercase tracking-[0.22em] text-emerald-200/80 font-bold mb-5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-sm shadow-emerald-300/50" />
-                <span>{t('hero.solarEpc')}</span>
-                <span className="w-1 h-px bg-emerald-400/40" />
-                <span>{t('hero.residential')}</span>
-                <span className="w-1 h-px bg-emerald-400/40" />
-                <span>{t('hero.commercial')}</span>
-                <span className="w-1 h-px bg-emerald-400/40" />
-                <span>{t('hero.industrial')}</span>
-              </div>
+{/* Category line */}
+               <div className="flex flex-wrap items-center gap-2.5 text-xs uppercase tracking-wider text-emerald-200/80 font-bold mb-5">
+                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                 <span className="text-xs sm:text-sm">{t('hero.solarEpc')}</span>
+                 <span className="w-2 h-px bg-emerald-400/40" />
+                 <span className="text-xs sm:text-sm">{t('hero.residential')}</span>
+                 <span className="w-2 h-px bg-emerald-400/40" />
+                 <span className="text-xs sm:text-sm">{t('hero.commercial')}</span>
+                 <span className="w-2 h-px bg-emerald-400/40" />
+                 <span className="text-xs sm:text-sm">{t('hero.industrial')}</span>
+               </div>
 
               {/* Main headline */}
               <h1 className="text-4xl min-[380px]:text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.04] text-white mb-6">
@@ -167,69 +167,62 @@ export default function Hero() {
               </p>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 mb-9">
-              <a
-                href="#calculator"
-                className="relative inline-flex w-full sm:w-auto justify-center items-center gap-2.5 px-9 py-4.5 bg-gradient-to-br from-emerald-400 to-emerald-600 hover:from-emerald-500 hover:to-emerald-700 text-white font-bold rounded-full shadow-2xl shadow-emerald-500/40 hover:shadow-emerald-500/60 transition-all duration-300 group overflow-hidden active:scale-[0.97]"
-              >
-                <span className="absolute -inset-x-full top-0 h-full w-[200%] bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-[250%] group-hover:translate-x-[250%] transition-transform duration-[1s] ease-in-out pointer-events-none" />
-                <span className="relative z-10 flex items-center gap-2.5">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                  </svg>
-                  {t('hero.calculateSavings')}
-                  <svg className="w-5 h-5 transition-all duration-300 group-hover:translate-x-1.5 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </span>
-              </a>
-              <a
-                href="#projects"
-                className="relative inline-flex w-full sm:w-auto justify-center items-center gap-2.5 px-8 py-4 bg-white/8 backdrop-blur-lg text-white font-bold rounded-full border border-white/20 hover:border-emerald-400/50 hover:bg-white/15 hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-300 group overflow-hidden active:scale-[0.97]"
-              >
-                <span className="absolute -inset-x-full top-0 h-full w-[200%] bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-[250%] group-hover:translate-x-[250%] transition-transform duration-[1s] ease-in-out pointer-events-none" />
-                <svg className="w-5 h-5 text-emerald-300 relative z-10 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-                <span className="relative z-10">{t('hero.viewProjects')}</span>
-                <svg className="w-5 h-5 relative z-10 transition-all duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
+{/* CTA Buttons */}
+             <div className="flex flex-col gap-3 mb-8">
+               <a
+                 href="#calculator"
+                 className="inline-flex w-full justify-center items-center gap-2.5 px-6 py-4 bg-gradient-to-br from-emerald-400 to-emerald-600 text-white font-bold rounded-full shadow-xl shadow-emerald-500/30 transition-all duration-300"
+               >
+                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                 </svg>
+                 <span>{t('hero.calculateSavings')}</span>
+                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                 </svg>
+               </a>
+               <a
+                 href="#projects"
+                 className="inline-flex w-full justify-center items-center gap-2.5 px-6 py-4 bg-white/10 text-white font-bold rounded-full border border-white/20 transition-all duration-300"
+               >
+                 <svg className="w-5 h-5 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                 </svg>
+                 <span>{t('hero.viewProjects')}</span>
+                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                 </svg>
+               </a>
+             </div>
 
-            {/* Trust chips */}
-            <div className="flex flex-wrap gap-2.5 mb-10">
-              {trustChips.map((chip, i) => (
-                <span
-                  key={chip}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/8 backdrop-blur-sm border border-white/12 rounded-full text-xs font-semibold text-emerald-50 shadow-sm hover:bg-white/15 hover:border-emerald-400/30 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300"
-                  style={{ animationDelay: `${i * 0.1}s` }}
-                >
-                  <svg className="w-3.5 h-3.5 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                  {chip}
-                </span>
-              ))}
-            </div>
+{/* Trust chips */}
+             <div className="flex flex-wrap gap-2 mb-8">
+               {trustChips.map((chip) => (
+                 <span
+                   key={chip}
+                   className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white/8 border border-white/12 rounded-full text-xs font-semibold text-emerald-50"
+                 >
+                   <svg className="w-3 h-3 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                   </svg>
+                   {chip}
+                 </span>
+               ))}
+             </div>
 
-            {/* Bottom proof stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8 pt-7 border-t border-white/10 max-w-2xl">
-              {[
-                { value: '₹61,200', label: t('hero.perKwRate'), sub: t('hero.indicativePricing') },
-                { value: '30 Yrs', label: t('hero.panelWarranty'), sub: t('hero.performanceBacked') },
-                { value: '500+', label: t('hero.projects'), sub: t('hero.acrossMaharashtra') },
-              ].map((stat, i) => (
-                <div key={stat.label} className="group relative">
-                  {i < 2 && <div className="hidden sm:block absolute right-0 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />}
-                  <div className="text-2xl sm:text-3xl font-black text-emerald-300 mb-0.5 group-hover:text-emerald-200 transition-colors drop-shadow-sm">{stat.value}</div>
-                  <div className="text-xs sm:text-sm font-bold text-emerald-50/80 leading-tight">{stat.label}</div>
-                  <div className="text-[10px] text-emerald-50/40 mt-0.5">{stat.sub}</div>
-                </div>
-              ))}
-            </div>
+{/* Bottom proof stats */}
+             <div className="grid grid-cols-3 gap-3 pt-6 border-t border-white/10 max-w-lg">
+               {[
+                 { value: '₹61,200', label: t('hero.perKwRate') },
+                 { value: '30 Yrs', label: t('hero.panelWarranty') },
+                 { value: '500+', label: t('hero.projects') },
+               ].map((stat) => (
+                 <div key={stat.label} className="text-center">
+                   <div className="text-lg font-black text-emerald-300 mb-1">{stat.value}</div>
+                   <div className="text-[10px] text-emerald-50/60 font-medium">{stat.label}</div>
+                 </div>
+               ))}
+             </div>
           </div>
 
           {/* Right content - premium visual stack */}
