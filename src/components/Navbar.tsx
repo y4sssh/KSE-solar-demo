@@ -144,9 +144,9 @@ export default function Navbar() {
               onClick={() => setMobileOpen((open) => !open)}
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
-              className="grid h-9 w-9 place-items-center rounded-xl border border-emerald-300 bg-emerald-100/50 text-emerald-800 transition-all duration-300 hover:border-emerald-400 hover:bg-emerald-200 hover:scale-110 active:scale-[0.9] xl:hidden sm:h-10 sm:w-10"
+              className="grid h-11 w-11 place-items-center rounded-xl border border-emerald-300 bg-emerald-100/50 text-emerald-800 transition-all duration-300 hover:border-emerald-400 hover:bg-emerald-200 hover:scale-110 active:scale-[0.9] xl:hidden"
             >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.1} aria-hidden="true">
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.1} aria-hidden="true">
                 {mobileOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" d="m6 6 12 12M18 6 6 18" />
                 ) : (
@@ -170,7 +170,7 @@ export default function Navbar() {
                     key={item.key}
                     href={item.href}
                     onClick={() => handleNavigation(item.href)}
-                    className={`border-b py-3 text-sm font-bold transition-all duration-300 ${
+                    className={`border-b py-3.5 text-sm font-bold transition-all duration-300 ${
                       isActive
                         ? 'border-emerald-600 text-emerald-900'
                         : 'border-emerald-200 text-emerald-700/60 hover:border-emerald-400 hover:text-emerald-900 hover:translate-x-1'
@@ -185,7 +185,7 @@ export default function Navbar() {
                 );
               })}
             </nav>
-            <a href="#contact" onClick={() => handleNavigation('#contact')} className={`group mt-4 flex items-center justify-between rounded-full bg-emerald-600 px-4 py-3.5 text-sm font-semibold text-white transition-all duration-500 active:scale-[0.97] overflow-hidden relative hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-500/30 ${mobileOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '0.4s' }}>
+                         <a href="#contact" onClick={() => handleNavigation('#contact')} className={`group mt-4 flex items-center justify-between rounded-full bg-emerald-600 px-4 py-4 text-sm font-semibold text-white transition-all duration-500 active:scale-[0.97] overflow-hidden relative hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-500/30 ${mobileOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '0.4s' }}>
               <span className="absolute -inset-x-full top-0 h-full w-[200%] bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-[250%] group-hover:translate-x-[250%] transition-transform duration-[1s] ease-in-out pointer-events-none" />
               <span className="relative">{t('nav.getSolarProposal')}</span>
               <svg className="h-4 w-4 relative transition-all duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.4} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0-5 5m5-5H6" /></svg>

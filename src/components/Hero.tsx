@@ -50,8 +50,8 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="hero-section relative pt-20 sm:pt-20 lg:pt-24 overflow-hidden h-screen sm:min-h-[100svh] flex items-center"
-      style={{ minHeight: '100vh' }}
+      className="hero-section relative pt-20 sm:pt-20 lg:pt-24 overflow-hidden min-h-[100dvh] flex items-center"
+      style={{ minHeight: '100dvh' }}
       onMouseMove={shouldReduceEffects ? undefined : handleMouseMove}
       onMouseLeave={shouldReduceEffects ? undefined : handleMouseLeave}
     >

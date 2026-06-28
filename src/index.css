@@ -1,84 +1,268 @@
 @import "tailwindcss";
 
-/* Mobile-first responsive adjustments */
+/* ===== MOBILE RESPONSIVE ADJUSTMENTS ===== */
+
+/* Very small phones (< 380px) */
+@media (max-width: 379px) {
+  .hero-section h1 {
+    font-size: 1.35rem !important;
+    line-height: 1.15 !important;
+  }
+  .hero-section .text-4xl {
+    font-size: 1.35rem !important;
+  }
+  [class*="text-3xl"]:not(.hero-section *) {
+    font-size: 1.5rem !important;
+  }
+  [class*="text-2xl"]:not(.hero-section *) {
+    font-size: 1.2rem !important;
+  }
+  section > .relative > .px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+/* Phones (< 640px) */
 @media (max-width: 639px) {
-  /* Hero section - full viewport height with proper fallback */
+  /* === Hero Section === */
   .hero-section {
-    height: 100vh !important;
-    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    height: 100dvh !important;
     background-image: url('/images/solar-panels.jpg') !important;
     background-size: cover !important;
-    -webkit-background-size: cover !important;
-    -moz-background-size: cover !important;
     background-position: center center !important;
     background-repeat: no-repeat !important;
     display: flex !important;
     align-items: center !important;
   }
-  
-  /* Force background wrapper height */
-  .hero-section > div {
-    min-height: 100vh !important;
+  .hero-section > div:first-child {
+    min-height: 100dvh !important;
   }
-  
-  /* Mobile background image */
   .hero-bg-mobile {
     object-fit: cover !important;
-    -o-object-fit: cover !important;
     object-position: center center !important;
     width: 100% !important;
     height: 100% !important;
-    min-height: 100vh !important;
+    min-height: 100dvh !important;
   }
   
-  /* Prevent animations on mobile */
+  /* Disable heavy animations on mobile for performance */
   .hero-video-zoom { animation: none !important; }
   .hero-glow, .hero-particles, .hero-orbits { display: none !important; }
   .hero-energy-lines, .hero-grid-fade { display: none !important; }
   
-  /* Hero content alignment and padding for mobile */
+  /* Hero content */
   .hero-section .hero-content {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
     justify-content: center !important;
+    overflow-y: auto !important;
+    max-height: 100dvh !important;
   }
   
-  /* Stack grid for mobile - force single column */
+  /* Stack grid for mobile */
   .hero-section .grid {
     display: flex !important;
     flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  
+  /* Hide the right panel on mobile to prevent content overload */
+  .hero-section .grid > div:last-child {
+    display: none !important;
+  }
+  
+  /* Hero headline */
+  .hero-section h1 { 
+    font-size: 1.6rem !important; 
+    line-height: 1.15 !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  /* Hero description */
+  .hero-section p { 
+    font-size: 0.8125rem !important; 
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Badge */
+  .hero-section .badge { 
+    font-size: 0.7rem !important; 
+    padding: 0.4rem 0.65rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  /* Category labels above h1 */
+  .hero-section .text-xs.uppercase.tracking-wider {
+    font-size: 0.65rem !important;
+  }
+  
+  /* CTA buttons - stack and make full width */
+  .hero-section a[href="#calculator"],
+  .hero-section a[href="#projects"] {
+    width: 100% !important;
+    padding: 0.85rem 1rem !important;
+    font-size: 0.85rem !important;
+  }
+  
+  /* Trust chips */
+  .hero-section .flex.flex-wrap.gap-2.mb-8 {
+    gap: 0.4rem !important;
+    margin-bottom: 1rem !important;
+  }
+  .hero-section .flex.flex-wrap.gap-2.mb-8 > span {
+    font-size: 0.65rem !important;
+    padding: 0.3rem 0.6rem !important;
+  }
+  
+  /* Stats grid */
+  .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 0.35rem; padding-top: 0.5rem !important; }
+  .hero-stats div { text-align: center; }
+  .hero-stats div > div:first-child { font-size: 0.9rem !important; }
+  .hero-stats div > div:last-child { font-size: 0.55rem !important; }
+  
+  /* Visual card */
+  .hero-card { margin-top: 1rem; max-width: 95vw; }
+  .hero-card img { height: 8rem !important; }
+  
+  /* === General Section Spacing === */
+  section[id] {
+    scroll-margin-top: 4rem;
+  }
+  section.py-20 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  section.py-16 {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  
+  /* === About Section === */
+  #about .grid.grid-cols-2.sm\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+  #about .grid.grid-cols-2.sm\:grid-cols-4 > div {
+    padding: 1rem 0.5rem !important;
+  }
+  
+  /* Feature checkboxes in About */
+  #about .grid.sm\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* 4 pillar cards in About */
+  #about .grid.md\:grid-cols-2.lg\:grid-cols-4 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* === Why Choose Us === */
+  #services .grid.sm\:grid-cols-\[1\.2fr_0\.8fr\] {
+    grid-template-columns: 1fr !important;
+  }
+  #services .grid.grid-cols-2.sm\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+  #services .grid.sm\:grid-cols-3.gap-2 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* === Components === */
+  #components .grid.sm\:grid-cols-2.lg\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  #components .grid.grid-cols-2.lg\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+  
+  /* === Solar Calculator === */
+  #calculator .grid.grid-cols-1.sm\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  
+  /* === Projects === */
+  #projects .grid.sm\:grid-cols-2.lg\:grid-cols-4 {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.75rem !important;
+  }
+  
+  /* === Certifications === */
+  .grid.sm\:grid-cols-2.lg\:grid-cols-3 {
+    gap: 0.75rem !important;
+  }
+  .grid.sm\:grid-cols-2.lg\:grid-cols-4 {
+    gap: 0.75rem !important;
+  }
+  
+  /* === Contact === */
+  #contact .grid.grid-cols-2.sm\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+  #contact .grid.grid-cols-2.sm\:grid-cols-4 > div {
+    padding: 0.75rem 0.5rem !important;
+  }
+  
+  /* === Footer === */
+  footer .grid.lg\:grid-cols-6 {
+    grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
   }
-  
-  /* Hero headline mobile */
-  .hero-section h1 { 
-    font-size: 1.75rem !important; 
-    line-height: 1.2 !important;
-    margin-bottom: 1rem !important;
+  footer .grid.grid-cols-2.lg\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  footer .flex-col.md\:flex-row {
+    gap: 1rem !important;
   }
   
-  /* Hero description mobile */
-  .hero-section p { 
-    font-size: 0.875rem !important; 
-    margin-bottom: 1.5rem !important;
+  /* === Navbar mobile === */
+  nav.grid.grid-cols-1.sm\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
   }
-  
-  /* Badge adjustments */
-  .hero-section .badge { 
-    font-size: 0.75rem !important; 
-    padding: 0.5rem 0.75rem !important;
-    margin-bottom: 1rem !important;
+  nav.grid.grid-cols-1.sm\:grid-cols-2 a {
+    padding: 0.85rem 0 !important;
+    font-size: 0.95rem !important;
   }
-  
-  /* Stats grid mobile */
-  .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
-  .hero-stats div { text-align: center; }
-  .hero-stats div > div:first-child { font-size: 1rem !important; }
-  .hero-stats div > div:last-child { font-size: 0.625rem !important; }
-  
-  /* Visual card mobile */
-  .hero-card { margin-top: 1.5rem; max-width: 90vw; }
-  .hero-card img { height: 10rem !important; }
+  /* Get Proposal button in mobile menu */
+  header a[href="#contact"] + a[href="#contact"] {
+    display: flex;
+  }
+}
+
+/* Tablet adjustments (640px - 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  section.py-20.lg\:py-28 {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+  /* Hero: keep left content, show right panel but smaller */
+  .hero-section .grid.lg\:grid-cols-\[1\.1fr_0\.9fr\] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .hero-section h1 {
+    font-size: 2.2rem !important;
+  }
+  /* 2-col grids on tablet */
+  #about .grid.md\:grid-cols-2.lg\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  #components .grid.sm\:grid-cols-2.lg\:grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  #projects .grid.sm\:grid-cols-2.lg\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  footer .grid.lg\:grid-cols-6 {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
 }
 
 /* Hide scrollbar for horizontal snap sections on mobile */
@@ -88,6 +272,35 @@
   }
   .snap-x {
     scrollbar-width: none;
+  }
+}
+
+/* Touch device optimizations - increase tap targets */
+@media (hover: none) and (pointer: coarse) {
+  button, 
+  a:not(.hero-section a),
+  [role="button"],
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+  }
+  button.py-2, 
+  a.py-2 {
+    padding-top: 0.625rem !important;
+    padding-bottom: 0.625rem !important;
+  }
+  /* Ensure form fields have adequate touch targets */
+  input, select, textarea {
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+  }
+  /* Accordion/FAQ touch targets */
+  .space-y-3 button {
+    padding: 0.875rem !important;
+  }
+  /* Category filter buttons */
+  .flex.flex-wrap.justify-center.gap-2 button {
+    min-height: 40px;
   }
 }
 
