@@ -172,11 +172,12 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(0, 218, 40, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(0, 218, 40, 0.6); }
+   0%, 100% { box-shadow: 0 0 8px rgba(0, 218, 40, 0.2); }
+   50% { box-shadow: 0 0 16px rgba(0, 218, 40, 0.4); }
 }
 .animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
+  animation: pulse-glow 5s ease-in-out infinite;
+  will-change: box-shadow;
 }
 
 /* Gradient text */
@@ -455,13 +456,12 @@ body {
 
 /* Rotating conic ring */
 @keyframes pulse-slow {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.05); }
+   0%, 100% { opacity: 0.3; }
+   50% { opacity: 0.6; }
 }
 .animate-pulse-slow {
-  animation: pulse-slow 4s ease-in-out infinite;
+  animation: pulse-slow 6s ease-in-out infinite;
   animation-delay: var(--delay, 0s);
-  will-change: opacity;
 }
 
 @keyframes ring-spin {
@@ -510,26 +510,26 @@ body {
   background: conic-gradient(
     from 0deg,
     transparent 0deg,
-    rgba(68, 232, 68, 0.14) 20deg,
+    rgba(68, 232, 68, 0.08) 20deg,
     transparent 48deg,
     transparent 92deg,
-    rgba(128, 255, 141, 0.1) 112deg,
+    rgba(128, 255, 141, 0.05) 112deg,
     transparent 140deg,
     transparent 188deg,
-    rgba(0, 218, 40, 0.12) 208deg,
+    rgba(0, 218, 40, 0.05) 208deg,
     transparent 236deg,
     transparent 300deg,
-    rgba(179, 255, 187, 0.08) 320deg,
+    rgba(179, 255, 187, 0.04) 320deg,
     transparent 360deg
   );
-  filter: blur(0.5px);
-  animation: hero-rays-spin 30s linear infinite;
+  filter: blur(0.3px);
+  animation: hero-rays-spin 45s linear infinite;
+  will-change: transform;
 }
 
 @keyframes hero-rays-spin {
-  from { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(180deg) scale(1.04); }
-  to { transform: rotate(360deg) scale(1); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .hero-energy-lines {
@@ -557,9 +557,9 @@ body {
 .hero-particle {
   position: absolute;
   border-radius: 9999px;
-  background: radial-gradient(circle, rgba(179, 255, 187,0.8) 0%, rgba(0, 218, 40,0.4) 45%, rgba(0, 218, 40,0) 75%);
-  animation: hero-particle-float 18s ease-in-out infinite;
-  will-change: transform, opacity;
+  background: radial-gradient(circle, rgba(179, 255, 187,0.6) 0%, rgba(0, 218, 40,0.3) 45%, rgba(0, 218, 40,0) 75%);
+  animation: hero-particle-float 25s ease-in-out infinite;
+  will-change: transform;
 }
 
 @keyframes hero-particle-float {
@@ -955,21 +955,22 @@ body {
     scroll-behavior: auto;
   }
 
-  .mobile-performance-lite .bg-light-sweep,
-  .mobile-performance-lite .bg-conic-spin,
-  .mobile-performance-lite .animate-blob,
-  .mobile-performance-lite .animate-energy-wave,
-  .mobile-performance-lite .animate-ring-float,
-  .mobile-performance-lite .animate-diamond-float,
-  .mobile-performance-lite .animate-sparkle-twinkle,
-  .mobile-performance-lite .hero-particle,
-  .mobile-performance-lite .hero-energy-lines,
-  .mobile-performance-lite .hero-grid-fade,
-  .mobile-performance-lite .hero-solar-rays,
-  .mobile-performance-lite .hero-orbit-ring,
-  .mobile-performance-lite .hero-orbit-dot {
-    display: none !important;
-  }
+.mobile-performance-lite .bg-light-sweep,
+   .mobile-performance-lite .bg-conic-spin,
+   .mobile-performance-lite .animate-blob,
+   .mobile-performance-lite .animate-energy-wave,
+   .mobile-performance-lite .animate-ring-float,
+   .mobile-performance-lite .animate-diamond-float,
+   .mobile-performance-lite .animate-sparkle-twinkle,
+   .mobile-performance-lite .hero-particle,
+   .mobile-performance-lite .hero-energy-lines,
+   .mobile-performance-lite .hero-grid-fade,
+   .mobile-performance-lite .hero-solar-rays,
+   .mobile-performance-lite .hero-orbit-ring,
+   .mobile-performance-lite .hero-orbit-dot,
+   .mobile-performance-lite .animate-gradient-x {
+     display: none !important;
+   }
 
   .mobile-performance-lite .bg-aurora-top,
   .mobile-performance-lite .bg-aurora-bottom,

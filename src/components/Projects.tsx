@@ -127,30 +127,25 @@ export default function Projects() {
       <div className="absolute inset-0 bg-corner-glow-tl opacity-40" />
       <div className="absolute inset-0 bg-corner-glow-br opacity-40" />
 
-      <div className="absolute top-20 right-0 w-96 h-96 bg-emerald-100/40 dark:bg-emerald-500/5 rounded-full blur-3xl animate-blob" />
-      <div className="absolute bottom-10 left-0 w-80 h-80 bg-emerald-200/30 dark:bg-emerald-500/5 rounded-full blur-3xl animate-blob" style={{ animationDelay: '-6s' }} />
-      <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-emerald-300/20 dark:bg-emerald-500/5 rounded-full blur-3xl animate-energy-wave" />
+<div className="absolute top-20 right-0 w-64 h-64 bg-emerald-100/20 dark:bg-emerald-500/5 rounded-full blur-2xl -z-10" style={{ contain: 'strict' }} />
+       <div className="absolute bottom-10 left-0 w-56 h-56 bg-emerald-200/15 dark:bg-emerald-500/5 rounded-full blur-xl -z-10" />
+       <div className="absolute top-1/3 left-1/4 w-40 h-40 bg-emerald-300/10 dark:bg-emerald-500/5 rounded-full blur-xl -z-10" />
 
-      <div className="absolute inset-0 pointer-events-none">
-        {[
-          { l: '18%', t: '22%', s: 7, d: '0s', du: '12s' },
-          { l: '72%', t: '55%', s: 9, d: '2s', du: '11s' },
-          { l: '50%', t: '78%', s: 6, d: '1s', du: '14s' },
-        ].map((p, i) => (
-          <span key={i} className="hero-particle" style={{ left: p.l, top: p.t, width: `${p.s}px`, height: `${p.s}px`, animationDelay: p.d, animationDuration: p.du }} />
-        ))}
-      </div>
+<div className="absolute inset-0 pointer-events-none" style={{ contain: 'strict' }}>
+         {[
+           { l: '18%', t: '22%', s: 5, d: '0s', du: '18s' },
+         ].map((p, i) => (
+           <span key={i} className="hero-particle" style={{ left: p.l, top: p.t, width: `${p.s}px`, height: `${p.s}px`, animationDelay: p.d, animationDuration: p.du }} />
+         ))}
+       </div>
 
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(5)].map((_, i) => (
-          <span key={i} className="absolute bg-emerald-400 rounded-full animate-sparkle-twinkle" style={{ left: `${10 + i * 18}%`, top: `${14 + i * 14}%`, width: `${2 + i % 2}px`, height: `${2 + i % 2}px`, animationDelay: `${i * 0.45}s`, opacity: 0.5 }} />
-        ))}
-      </div>
+       <div className="absolute inset-0 pointer-events-none" style={{ contain: 'strict' }}>
+         {[...Array(2)].map((_, i) => (
+           <span key={i} className="absolute bg-emerald-400 rounded-full animate-sparkle-twinkle" style={{ left: `${12 + i * 30}%`, top: `${16 + i * 25}%`, width: '2px', height: '2px', animationDelay: `${i * 0.6}s`, opacity: 0.3 }} />
+         ))}
+</div>
 
-      <div className="absolute top-[28%] right-[8%] w-3.5 h-3.5 border border-emerald-400/40 rotate-45 animate-diamond-float pointer-events-none" />
-      <div className="absolute bottom-[32%] left-[10%] w-3 h-3 border border-emerald-500/35 rotate-45 animate-diamond-float pointer-events-none" style={{ animationDelay: '-7s' }} />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className={`text-center max-w-3xl mx-auto mb-10 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 rounded-full text-xs font-bold tracking-wider mb-5">

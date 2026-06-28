@@ -129,15 +129,14 @@ export default function Hero() {
           {/* Left content */}
           <div className="animate-fade-in-up">
             {/* Premium badge */}
-            <div className="inline-flex max-w-full flex-wrap items-center gap-2.5 px-4 py-2 sm:px-5 bg-white/10 backdrop-blur-xl border border-emerald-400/25 text-emerald-100 rounded-full text-xs sm:text-sm font-semibold mb-7 shadow-2xl shadow-emerald-500/10 hover:border-emerald-400/40 transition-all duration-500">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 shadow-lg shadow-emerald-300/50"></span>
-              </span>
-              <span>{t('hero.mnreApproved')}</span>
-              <span className="w-1 h-1 rounded-full bg-emerald-400/60" />
-              <span>{t('hero.completeSolarSolutions')}</span>
-            </div>
+<div className="inline-flex max-w-full flex-wrap items-center gap-2.5 px-4 py-2 sm:px-5 bg-emerald-400/10 border border-emerald-400/25 text-emerald-200 rounded-full text-xs sm:text-sm font-semibold mb-7 shadow-lg shadow-emerald-500/5 hover:border-emerald-400/40 transition-all duration-500">
+               <span className="relative flex h-2.5 w-2.5">
+                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+               </span>
+               <span>{t('hero.mnreApproved')}</span>
+               <span className="w-1 h-1 rounded-full bg-emerald-400/60" />
+               <span>{t('hero.completeSolarSolutions')}</span>
+             </div>
 
             <div className="max-w-2xl">
               {/* Category line */}

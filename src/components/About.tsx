@@ -133,23 +133,19 @@ export default function About() {
       <div className="absolute inset-0 bg-core-radiant" />
 
 {/* Animated blobs */}
-       <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-100/20 dark:bg-emerald-500/5 rounded-full blur-3xl -z-10" style={{ contain: 'strict' }} />
-       <div className="absolute bottom-0 left-0 w-72 h-72 bg-emerald-200/15 dark:bg-emerald-500/5 rounded-full blur-3xl -z-10" />
-       <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-emerald-300/10 dark:bg-emerald-500/5 rounded-full blur-2xl -z-10" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-100/15 dark:bg-emerald-500/5 rounded-full blur-2xl -z-10" style={{ contain: 'strict' }} />
+        <div className="absolute bottom-0 left-0 w-56 h-56 bg-emerald-200/10 dark:bg-emerald-500/5 rounded-full blur-xl -z-10" />
+        <div className="absolute top-1/2 left-1/3 w-32 h-32 bg-emerald-300/8 dark:bg-emerald-500/5 rounded-full blur-md -z-10" />
 
-      {/* Hero-style glow particles */}
-      <div className="absolute inset-0 pointer-events-none -z-10">
-        {[
-          { left: '12%', top: '20%', size: 8, delay: '0s', duration: '12s' },
-          { left: '75%', top: '50%', size: 6, delay: '2s', duration: '10s' },
-          { left: '45%', top: '80%', size: 7, delay: '1s', duration: '14s' },
-          { left: '85%', top: '15%', size: 9, delay: '3s', duration: '11s' },
-          { left: '25%', top: '55%', size: 5, delay: '0.5s', duration: '13s' },
-          { left: '60%', top: '30%', size: 8, delay: '2.5s', duration: '10s' },
-        ].map((p, i) => (
-          <span key={i} className="hero-particle" style={{ left: p.left, top: p.top, width: `${p.size}px`, height: `${p.size}px`, animationDelay: p.delay, animationDuration: p.duration }} />
-        ))}
-      </div>
+{/* Hero-style glow particles */}
+       <div className="absolute inset-0 pointer-events-none -z-10" style={{ contain: 'strict' }}>
+         {[
+           { left: '12%', top: '20%', size: 6, delay: '0s', duration: '18s' },
+           { left: '75%', top: '50%', size: 5, delay: '2s', duration: '20s' },
+         ].map((p, i) => (
+           <span key={i} className="hero-particle" style={{ left: p.left, top: p.top, width: `${p.size}px`, height: `${p.size}px`, animationDelay: p.delay, animationDuration: p.duration }} />
+         ))}
+       </div>
 
 {/* Sparkle stars */}
        <div className="absolute inset-0 pointer-events-none -z-10" style={{ contain: 'strict' }}>
@@ -164,15 +160,10 @@ export default function About() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-semibold mb-5">
-            <div className="relative">
-              <div className="absolute -inset-1.5 bg-emerald-400/30 rounded-full blur-md animate-pulse-glow" />
-              <svg className="relative w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            {t('about.aboutCompany')}
-          </div>
+<div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-semibold mb-5">
+               <span className="w-2.5 h-2.5 bg-emerald-400 rounded-full"></span>
+               {t('about.aboutCompany')}
+             </div>
           <ScrollRevealHeading
             as="h2"
             className="justify-center text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight mb-5"
