@@ -211,19 +211,21 @@ export default function Hero() {
                ))}
              </div>
 
-{/* Bottom proof stats */}
-              <div className="grid grid-cols-3 gap-2 pt-4 border-t border-white/10 max-w-lg hero-stats">
-                {[
-                  { value: '₹61,200', label: t('hero.perKwRate'), desc: t('hero.indicativeEpcPricing') },
-                  { value: '30 Yrs', label: t('hero.panelWarranty'), desc: t('hero.performanceAssurance') },
-                  { value: '500+', label: t('hero.projects'), desc: t('hero.acrossMaharashtra') },
-                ].map((stat) => (
-                  <div key={stat.label} className="text-center">
-                    <div className="text-base font-black text-emerald-300 mb-0.5">{stat.value}</div>
-                    <div className="text-[9px] text-emerald-50/60 font-medium leading-tight">{stat.label}</div>
-                    <div className="text-[7px] text-emerald-50/40 font-medium mt-0.5 leading-tight">{stat.desc}</div>
-                  </div>
-                ))}
+{/* Bottom proof stats — horizontal glass frame */}
+              <div className="max-w-lg hero-stats">
+                <div className="grid grid-cols-3 gap-2 p-3 bg-white/[0.06] border border-white/10 rounded-2xl backdrop-blur-md shadow-lg shadow-black/10">
+                  {[
+                    { value: '₹61,200', label: t('hero.perKwRate'), desc: t('hero.indicativeEpcPricing') },
+                    { value: '30 Yrs', label: t('hero.panelWarranty'), desc: t('hero.performanceAssurance') },
+                    { value: '500+', label: t('hero.projects'), desc: t('hero.acrossMaharashtra') },
+                  ].map((stat) => (
+                    <div key={stat.label} className="text-center">
+                      <div className="text-base font-black text-emerald-300 mb-0.5">{stat.value}</div>
+                      <div className="text-[9px] text-emerald-50/60 font-medium leading-tight">{stat.label}</div>
+                      <div className="text-[7px] text-emerald-50/40 font-medium mt-0.5 leading-tight">{stat.desc}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
