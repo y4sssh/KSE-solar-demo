@@ -179,13 +179,13 @@ export default function Clients() {
         {/* Mobile Floating Carousel */}
         <div className="sm:hidden mb-8">
           <div className="overflow-x-auto -mx-4 px-4 scrollbar-none snap-x snap-mandatory">
-            <div className="flex gap-4 pb-4">
+            <div className="flex gap-3 pb-4">
               {partners.map((p, idx) => (
                 <div
                   key={`float-${p.name}`}
-                  className="flex-shrink-0 w-[150px] snap-start bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 text-center"
+                  className="flex-shrink-0 w-[130px] snap-start bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-700 shadow text-center"
                 >
-                  <div className="h-14 flex items-center justify-center">
+                  <div className="h-12 flex items-center justify-center">
                     <LogoBadge p={p} showLogo small />
                   </div>
                 </div>
