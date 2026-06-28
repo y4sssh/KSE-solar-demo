@@ -125,6 +125,7 @@
   /* Visual card */
   .hero-card { margin-top: 1rem; max-width: 95vw; }
   .hero-card img { height: 8rem !important; }
+  .mobile-card-image { height: 12rem !important; }
   
   /* === General Section Spacing === */
   section[id] {

@@ -256,15 +256,15 @@ export default function Hero() {
                 {/* Production energy bar at very top */}
                 <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-emerald-500/40 via-emerald-300/60 to-emerald-500/40 animate-pulse-slow z-10" />
                 
-                {/* top image panel */}
-                <div className="relative h-64 sm:h-80 overflow-hidden">
-                  <img
-                    src={heroFeatureImage}
-                    alt="Premium rooftop solar installation"
-                    className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-1000 ease-out"
-                    loading={shouldReduceEffects ? 'lazy' : 'eager'}
-                    decoding="async"
-                  />
+{/* top image panel */}
+                 <div className="relative h-48 sm:h-64 overflow-hidden mobile-card-image">
+                   <img
+                     src={heroFeatureImage}
+                     alt="Premium rooftop solar installation"
+                     className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-1000 ease-out"
+                     loading={shouldReduceEffects ? 'lazy' : 'eager'}
+                     decoding="async"
+                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent" />
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
