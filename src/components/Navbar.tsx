@@ -67,12 +67,14 @@ export default function Navbar() {
         {/* Bottom accent line */}
         <div className="absolute inset-x-[5%] bottom-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent pointer-events-none" />
 
-        <div className="flex h-[4.45rem] items-center justify-between px-4 sm:h-[4.8rem] sm:px-5">
-          <a href="#home" className="group flex min-w-0 items-center gap-3" onClick={() => handleNavigation('#home')}>
+        <div className="flex h-[4.25rem] items-center justify-between px-3.5 sm:h-[4.8rem] sm:px-5">
+          <a href="#home" className="group flex min-w-0 items-center gap-2.5 sm:gap-3" onClick={() => handleNavigation('#home')}>
             <img
               src="/images/kse-logo.jpeg"
               alt="KSE Logo"
               className="h-11 w-auto rounded-xl sm:h-14 transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-emerald-500/20"
+              loading="eager"
+              decoding="async"
             />
             <div className="hidden min-w-0 sm:block">
               <div className="font-display text-2xl leading-none gradient-text animate-gradient-x transition-all duration-300 group-hover:translate-x-0.5">{t('nav.kaustubhSolar')}</div>
@@ -107,7 +109,7 @@ export default function Navbar() {
             })}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
 
             {/* Language Toggle */}
             <button
@@ -160,7 +162,7 @@ export default function Navbar() {
         }`}>
           <div className="px-4 pb-4 pt-3.5 sm:px-5">
             <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.22em] text-emerald-700/50">{t('nav.exploreKaustubh')}</p>
-            <nav className="grid grid-cols-2 gap-x-6" aria-label="Mobile navigation">
+            <nav className="grid grid-cols-1 gap-x-6 sm:grid-cols-2" aria-label="Mobile navigation">
               {navKeys.map((item, i) => {
                 const isActive = activeSection === item.href.slice(1);
                 return (

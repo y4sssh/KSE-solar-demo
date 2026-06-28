@@ -157,6 +157,8 @@ export default function Certifications() {
               src="https://images.pexels.com/photos/4254166/pexels-photo-4254166.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
               alt="Inspectors checking documentation against solar panels"
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/95 via-emerald-900/70 to-emerald-900/20" />
 
@@ -196,6 +198,8 @@ export default function Certifications() {
                 src="https://images.pexels.com/photos/4254169/pexels-photo-4254169.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
                 alt="Engineer checking technical documentation at solar site"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-slate-900/20" />
               <div className="absolute bottom-0 left-0 right-0 p-5">

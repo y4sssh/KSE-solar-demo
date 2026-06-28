@@ -222,6 +222,8 @@ export default function OurJourney() {
                 src="https://images.pexels.com/photos/4254161/pexels-photo-4254161.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
                 alt="Solar technician demonstrating panels to inspector"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
@@ -322,6 +324,8 @@ export default function OurJourney() {
                             src={milestone.image}
                             alt={milestone.title}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            loading="lazy"
+                            decoding="async"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-emerald-900/80 to-transparent" />
                           {/* Year badge (mobile) */}

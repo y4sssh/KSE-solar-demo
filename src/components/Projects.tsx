@@ -42,7 +42,7 @@ export default function Projects() {
     panels: '6 Panels',
     technology: 'N-Type Topcon Bifacial',
     category: 'Residential' as const,
-    image: 'https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=900&auto=format&fit=crop',
+    image: '/images/solar-panels.jpg',
     tags: [t('projects.featuredTag1'), t('projects.featuredTag2'), t('projects.featuredTag3'), t('projects.featuredTag4')],
   };
 
@@ -54,7 +54,7 @@ export default function Projects() {
       panels: '280 Panels',
       technology: 'KSE Bifacial DCR',
       category: 'Commercial',
-      image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=600&auto=format&fit=crop',
+      image: '/images/solar-kit.jpg',
     },
     {
       title: t('projects.project2Title'),
@@ -63,7 +63,7 @@ export default function Projects() {
       panels: '920 Panels',
       technology: 'KSE Bifacial DCR',
       category: 'Industrial',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&auto=format&fit=crop',
+      image: '/images/mounting-structure.jpg',
     },
     {
       title: t('projects.project3Title'),
@@ -72,7 +72,7 @@ export default function Projects() {
       panels: '92 Panels',
       technology: 'On-Grid String Inverter',
       category: 'Residential',
-      image: 'https://images.unsplash.com/photo-1592833159155-c62df1b65634?w=600&auto=format&fit=crop',
+      image: '/images/street-light.jpg',
     },
     {
       title: t('projects.project4Title'),
@@ -81,7 +81,7 @@ export default function Projects() {
       panels: '460 Panels',
       technology: 'KSE On-Grid',
       category: 'Institutional',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop',
+      image: '/images/acdb-dcdb.jpg',
     },
     {
       title: t('projects.project5Title'),
@@ -90,7 +90,7 @@ export default function Projects() {
       panels: '1840 Panels',
       technology: 'Ground + Rooftop',
       category: 'Industrial',
-      image: 'https://images.unsplash.com/photo-1565636192335-c15d8dd9fb1e?w=600&auto=format&fit=crop',
+      image: '/images/solar-panels.jpg',
     },
     {
       title: t('projects.project6Title'),
@@ -99,7 +99,7 @@ export default function Projects() {
       panels: '46 Panels',
       technology: 'N-Type Topcon',
       category: 'Institutional',
-      image: 'https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=600&auto=format&fit=crop',
+      image: '/images/solar-inverter.jpg',
     },
     {
       title: t('projects.project7Title'),
@@ -108,7 +108,7 @@ export default function Projects() {
       panels: '10 Panels',
       technology: 'N-Type Topcon Bifacial',
       category: 'Residential',
-      image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&auto=format&fit=crop',
+      image: '/images/solar-panels.jpg',
     },
   ];
 
@@ -179,7 +179,7 @@ export default function Projects() {
               <button
                 key={cat}
                 onClick={() => setActive(cat)}
-                className={`inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 active:scale-[0.95] ${
+                className={`inline-flex items-center gap-2 px-4 py-2 text-xs sm:px-5 sm:py-2.5 sm:text-sm font-semibold rounded-full transition-all duration-300 active:scale-[0.95] ${
                   active === cat
                     ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/30 scale-[1.04]'
                     : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 hover:scale-[1.04] hover:shadow-md hover:shadow-emerald-500/20'
@@ -207,6 +207,8 @@ export default function Projects() {
                 src={featured.image}
                 alt={featured.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               {/* Top badges */}
@@ -234,7 +236,7 @@ export default function Projects() {
               </h3>
 
               {/* Details grid */}
-              <div className="grid grid-cols-2 gap-5 mb-6">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 mb-6">
                 {[
                   { icon: 'location', label: t('projects.location'), value: featured.location },
                   { icon: 'capacity', label: t('projects.capacity'), value: featured.capacity },
@@ -298,6 +300,8 @@ export default function Projects() {
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 

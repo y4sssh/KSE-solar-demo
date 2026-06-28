@@ -53,6 +53,20 @@ body {
   overflow-x: hidden;
 }
 
+@supports (content-visibility: auto) {
+  @media (max-width: 820px) {
+    main > section {
+      content-visibility: auto;
+      contain-intrinsic-size: 960px;
+    }
+
+    main > section:first-of-type {
+      content-visibility: visible;
+      contain-intrinsic-size: auto;
+    }
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -936,6 +950,53 @@ body {
   animation: sparkle-twinkle 2s ease-in-out infinite;
   animation-delay: var(--delay, 0s);
   will-change: opacity, transform;
+}
+
+@media (max-width: 820px) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .mobile-performance-lite .bg-light-sweep,
+  .mobile-performance-lite .bg-conic-spin,
+  .mobile-performance-lite .animate-blob,
+  .mobile-performance-lite .animate-energy-wave,
+  .mobile-performance-lite .animate-ring-float,
+  .mobile-performance-lite .animate-diamond-float,
+  .mobile-performance-lite .animate-sparkle-twinkle,
+  .mobile-performance-lite .hero-particle,
+  .mobile-performance-lite .hero-energy-lines,
+  .mobile-performance-lite .hero-grid-fade,
+  .mobile-performance-lite .hero-solar-rays,
+  .mobile-performance-lite .hero-orbit-ring,
+  .mobile-performance-lite .hero-orbit-dot {
+    display: none !important;
+  }
+
+  .mobile-performance-lite .bg-aurora-top,
+  .mobile-performance-lite .bg-aurora-bottom,
+  .mobile-performance-lite .bg-corner-glow-tl,
+  .mobile-performance-lite .bg-corner-glow-tr,
+  .mobile-performance-lite .bg-corner-glow-br,
+  .mobile-performance-lite .bg-core-radiant,
+  .mobile-performance-lite .animate-gradient-x,
+  .mobile-performance-lite .animate-float,
+  .mobile-performance-lite .animate-pulse-slow,
+  .mobile-performance-lite .animate-fade-in-up,
+  .mobile-performance-lite .animate-fade-in-down {
+    animation: none !important;
+    transition-duration: 0.2s !important;
+  }
+
+  .mobile-performance-lite [class*="backdrop-blur"] {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .mobile-performance-lite .animate-partner-scroll {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

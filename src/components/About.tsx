@@ -203,6 +203,8 @@ export default function About() {
                 src="https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?w=900&auto=format&fit=crop&q=90"
                 alt="Premium solar panel installation with dramatic sky"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
               />
               {/* Rich gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent" />
@@ -237,6 +239,8 @@ export default function About() {
                 src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=600&auto=format&fit=crop&q=90"
                 alt="Solar panel close-up with dramatic lighting"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-emerald-950/30" />
             </div>
@@ -247,6 +251,8 @@ export default function About() {
                 src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=90"
                 alt="Solar farm at golden hour with mountain backdrop"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-tl from-amber-500/20 to-transparent" />
             </div>
@@ -257,6 +263,8 @@ export default function About() {
                 src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&auto=format&fit=crop&q=90"
                 alt="Premium rooftop solar panel installation"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -414,6 +422,8 @@ export default function About() {
                       alt={pillar.title}
                       className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-1000 ease-out"
                       style={{ objectPosition: pillar.imagePosition }}
+                      loading="lazy"
+                      decoding="async"
                     />
                     {/* Gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-900/40 to-transparent group-hover:opacity-75 transition-opacity duration-700"></div>
@@ -563,6 +573,8 @@ export default function About() {
                       src={item.image}
                       alt={item.label}
                       className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-1000 ease-out"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-900/40 to-transparent group-hover:opacity-80 transition-opacity duration-700"></div>
                     <div className="absolute top-5 left-5">

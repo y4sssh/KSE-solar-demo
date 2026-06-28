@@ -98,6 +98,8 @@ export default function Footer() {
                     src="/images/kse-logo.jpeg"
                     alt="KSE Logo"
                     className="relative h-16 w-auto sm:h-22 rounded-xl shadow-lg shadow-emerald-500/30"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div>

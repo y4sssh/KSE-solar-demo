@@ -227,7 +227,7 @@ export default function Components() {
             <div
               key={product.title}
               onClick={() => setSelected(product)}
-              className={`max-sm:snap-start max-sm:min-w-[280px] max-sm:w-[75vw] max-sm:shrink-0 group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-emerald-500/10 border border-slate-100 dark:border-slate-700 hover:border-emerald-200 dark:hover:border-emerald-800 transition-all duration-500 hover:-translate-y-2 flex flex-col cursor-pointer ${
+              className={`max-sm:snap-start max-sm:min-w-[260px] max-sm:w-[82vw] max-sm:max-w-[320px] max-sm:shrink-0 group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-emerald-500/10 border border-slate-100 dark:border-slate-700 hover:border-emerald-200 dark:hover:border-emerald-800 transition-all duration-500 hover:-translate-y-2 flex flex-col cursor-pointer ${
                 gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: `${idx * 80}ms` }}
@@ -239,6 +239,8 @@ export default function Components() {
                   src={product.image}
                   alt={product.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                  decoding="async"
                 />
                 {/* View details hint on hover */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
@@ -395,6 +397,8 @@ export default function Components() {
                   src={selected.image}
                   alt={selected.title}
                   className="w-full h-full object-contain p-8 max-h-[300px] drop-shadow-2xl"
+                  loading="lazy"
+                  decoding="async"
                 />
 
                 <span className="absolute bottom-4 left-4 px-3 py-1.5 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm text-slate-900 dark:text-white text-xs font-bold rounded-full shadow-md flex items-center gap-1.5 z-10">

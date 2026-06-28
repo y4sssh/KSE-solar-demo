@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useLanguage } from '../LanguageContext';
+import { useMobileProfile } from '../hooks/useMobileProfile';
 
 const particlesSeed = [
   { left: '8%', top: '16%', size: 10, delay: '0s', duration: '11s' },
@@ -16,19 +17,23 @@ const particlesSeed = [
 
 export default function Hero() {
   const { t } = useLanguage();
+  const { shouldReduceEffects } = useMobileProfile();
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const heroPoster = '/images/solar-panels.jpg';
+  const heroFeatureImage = '/images/solar-kit.jpg';
 
   const heroMetrics = useMemo(() => [
     { value: '98%', label: t('hero.inverterEfficiency') },
     { value: '6', label: t('hero.panelsFor3_5kw') },
     { value: '24h', label: t('hero.responseWindow') },
-  ], []);
+  ], [t]);
 
-  const trustChips = useMemo(() => [t('hero.nTypeTopcon'), t('hero.yrWarranty'), t('hero.turnkeyEpc'), t('hero.netMeteringSupport')], []);
+  const trustChips = useMemo(() => [t('hero.nTypeTopcon'), t('hero.yrWarranty'), t('hero.turnkeyEpc'), t('hero.netMeteringSupport')], [t]);
 
   const particles = useMemo(() => particlesSeed, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (shouldReduceEffects) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
     const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
@@ -43,77 +48,86 @@ export default function Hero() {
     <section
       id="home"
       className="relative pt-20 sm:pt-20 lg:pt-24 overflow-hidden min-h-[100svh] flex items-center"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={shouldReduceEffects ? undefined : handleMouseMove}
+      onMouseLeave={shouldReduceEffects ? undefined : handleMouseLeave}
     >
       {/* Video background */}
       <div className="absolute inset-0 overflow-hidden">
-        <video
-          className={`absolute inset-0 w-full h-full object-cover hero-video-zoom transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          onLoadedData={() => setVideoLoaded(true)}
-          poster="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1400&auto=format&fit=crop&q=90"
-        >
-          <source src="https://videos.pexels.com/video-files/9790191/9790191-uhd_3840_2160_30fps.mp4" type="video/mp4" />
-          <source src="https://videos.pexels.com/video-files/7042201/7042201-uhd_4096_1974_30fps.mp4" type="video/mp4" />
-        </video>
-        {!videoLoaded && (
+        {!shouldReduceEffects && (
+          <video
+            className={`absolute inset-0 w-full h-full object-cover hero-video-zoom transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            onLoadedData={() => setVideoLoaded(true)}
+            poster={heroPoster}
+          >
+            <source src="https://videos.pexels.com/video-files/9790191/9790191-uhd_3840_2160_30fps.mp4" type="video/mp4" />
+            <source src="https://videos.pexels.com/video-files/7042201/7042201-uhd_4096_1974_30fps.mp4" type="video/mp4" />
+          </video>
+        )}
+        {(shouldReduceEffects || !videoLoaded) && (
           <img
-            src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1400&auto=format&fit=crop&q=90"
+            src={heroPoster}
             className="absolute inset-0 w-full h-full object-cover"
             alt="Solar panels"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
           />
         )}
         <div className="absolute inset-0 hero-vignette" />
-        <div className="absolute inset-0 hero-energy-lines opacity-80" />
-        <div className="absolute inset-0 hero-grid-fade opacity-25" />
+        {!shouldReduceEffects && <div className="absolute inset-0 hero-energy-lines opacity-80" />}
+        {!shouldReduceEffects && <div className="absolute inset-0 hero-grid-fade opacity-25" />}
       </div>
 
       {/* Solar rays core */}
-      <div
-        className="hidden md:block absolute right-[6%] top-[12%] w-[32rem] h-[32rem] opacity-70 pointer-events-none"
-        style={{ transform: `translate3d(${mouse.x * 12}px, ${mouse.y * 10}px, 0)` }}
-      >
-        <div className="absolute inset-0 rounded-full hero-solar-rays" />
-        <div className="absolute inset-10 rounded-full bg-emerald-400/10 blur-3xl" />
-        <div className="absolute inset-[18%] rounded-full hero-orbit-ring opacity-50">
-          <span className="hero-orbit-dot" style={{ transform: `translate(110px, -90px)` }} />
+      {!shouldReduceEffects && (
+        <div
+          className="hidden md:block absolute right-[6%] top-[12%] w-[32rem] h-[32rem] opacity-70 pointer-events-none"
+          style={{ transform: `translate3d(${mouse.x * 12}px, ${mouse.y * 10}px, 0)` }}
+        >
+          <div className="absolute inset-0 rounded-full hero-solar-rays" />
+          <div className="absolute inset-10 rounded-full bg-emerald-400/10 blur-3xl" />
+          <div className="absolute inset-[18%] rounded-full hero-orbit-ring opacity-50">
+            <span className="hero-orbit-dot" style={{ transform: `translate(110px, -90px)` }} />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {particles.map((p, idx) => (
-          <span
-            key={idx}
-            className="hero-particle"
-            style={{
-              left: p.left,
-              top: p.top,
-              width: `${p.size}px`,
-              height: `${p.size}px`,
-              animationDelay: p.delay,
-              animationDuration: p.duration,
-              transform: `translate3d(${mouse.x * ((idx % 4) + 1) * 4}px, ${mouse.y * ((idx % 3) + 1) * 4}px, 0)`,
-            }}
-          />
-        ))}
-      </div>
+      {!shouldReduceEffects && (
+        <div className="absolute inset-0 pointer-events-none">
+          {particles.map((p, idx) => (
+            <span
+              key={idx}
+              className="hero-particle"
+              style={{
+                left: p.left,
+                top: p.top,
+                width: `${p.size}px`,
+                height: `${p.size}px`,
+                animationDelay: p.delay,
+                animationDuration: p.duration,
+                transform: `translate3d(${mouse.x * ((idx % 4) + 1) * 4}px, ${mouse.y * ((idx % 3) + 1) * 4}px, 0)`,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* foreground blobs */}
-      <div className="hidden sm:block absolute top-16 right-0 w-[30rem] h-[30rem] bg-emerald-300/15 rounded-full blur-3xl animate-blob pointer-events-none" />
-      <div className="hidden sm:block absolute bottom-0 left-0 w-[26rem] h-[26rem] bg-emerald-200/15 rounded-full blur-3xl animate-blob pointer-events-none" style={{ animationDelay: '8s' }} />
+      {!shouldReduceEffects && <div className="hidden sm:block absolute top-16 right-0 w-[30rem] h-[30rem] bg-emerald-300/15 rounded-full blur-3xl animate-blob pointer-events-none" />}
+      {!shouldReduceEffects && <div className="hidden sm:block absolute bottom-0 left-0 w-[26rem] h-[26rem] bg-emerald-200/15 rounded-full blur-3xl animate-blob pointer-events-none" style={{ animationDelay: '8s' }} />}
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28 w-full">
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-16 items-center">
           {/* Left content */}
           <div className="animate-fade-in-up">
             {/* Premium badge */}
-            <div className="inline-flex max-w-full items-center gap-2.5 px-4 py-2 sm:px-5 bg-white/10 backdrop-blur-xl border border-emerald-400/25 text-emerald-100 rounded-full text-xs sm:text-sm font-semibold mb-7 shadow-2xl shadow-emerald-500/10 hover:border-emerald-400/40 transition-all duration-500">
+            <div className="inline-flex max-w-full flex-wrap items-center gap-2.5 px-4 py-2 sm:px-5 bg-white/10 backdrop-blur-xl border border-emerald-400/25 text-emerald-100 rounded-full text-xs sm:text-sm font-semibold mb-7 shadow-2xl shadow-emerald-500/10 hover:border-emerald-400/40 transition-all duration-500">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 shadow-lg shadow-emerald-300/50"></span>
@@ -125,7 +139,7 @@ export default function Hero() {
 
             <div className="max-w-2xl">
               {/* Category line */}
-              <div className="flex items-center gap-2 text-[10px] sm:text-xs uppercase tracking-[0.22em] text-emerald-200/80 font-bold mb-5">
+              <div className="flex flex-wrap items-center gap-2 text-[10px] sm:text-xs uppercase tracking-[0.22em] text-emerald-200/80 font-bold mb-5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-sm shadow-emerald-300/50" />
                 <span>{t('hero.solarEpc')}</span>
                 <span className="w-1 h-px bg-emerald-400/40" />
@@ -250,9 +264,11 @@ export default function Hero() {
                 {/* top image panel */}
                 <div className="relative h-64 sm:h-80 overflow-hidden">
                   <img
-                    src="https://images.pexels.com/photos/11645008/pexels-photo-11645008.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1200"
+                    src={heroFeatureImage}
                     alt="Premium rooftop solar installation"
                     className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-1000 ease-out"
+                    loading={shouldReduceEffects ? 'lazy' : 'eager'}
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent" />
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -282,7 +298,7 @@ export default function Hero() {
                           <div className="text-[10px] text-emerald-100/70 mt-1 leading-relaxed">{t('hero.premiumRooftopDesc')}</div>
                         </div>
                         <div className="hidden sm:flex items-center justify-center rounded-xl border border-white/15 bg-black/30 backdrop-blur-sm px-3 py-2 flex-shrink-0">
-                          <img src="/images/kse-logo.jpeg" alt="KSE" className="h-8 w-auto" />
+                          <img src="/images/kse-logo.jpeg" alt="KSE" className="h-8 w-auto" loading="lazy" decoding="async" />
                         </div>
                       </div>
                     </div>

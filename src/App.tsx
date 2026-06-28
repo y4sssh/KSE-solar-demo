@@ -16,6 +16,7 @@ import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsApp from './components/WhatsApp';
+import { useMobileProfile } from './hooks/useMobileProfile';
 
 type Theme = 'light' | 'dark';
 
@@ -32,6 +33,7 @@ export const ThemeContext = createContext<ThemeContextType>({
 export const useTheme = () => useContext(ThemeContext);
 
 function App() {
+  const { shouldReduceEffects } = useMobileProfile();
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme') as Theme;
@@ -52,122 +54,132 @@ function App() {
   }, [theme]);
 
   const toggleTheme = () => setTheme((t) => (t === 'light' ? 'dark' : 'light'));
+  const sparkleCount = shouldReduceEffects ? 0 : 24;
+  const orbCount = shouldReduceEffects ? 0 : 60;
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <LanguageProvider translations={translations}>
-      <div className="min-h-screen overflow-x-hidden bg-transparent text-slate-900 dark:text-slate-100 transition-colors duration-300 relative">
-        {/* All background effects wrapped in z-0 layer */}
-        <div className="fixed inset-0 pointer-events-none z-0" style={{ isolation: 'isolate' }}>
-          <div className="absolute inset-0 bg-noise" />
-          <div className="absolute inset-0 opacity-95 dark:opacity-55 bg-grid-lines" />
-          <div className="absolute inset-0 opacity-40 dark:opacity-30 bg-conic-spin" />
-          <div className="absolute top-0 left-0 right-0 h-[40vh] opacity-35 dark:opacity-25 bg-aurora-top" />
-          <div className="absolute bottom-0 left-0 right-0 h-[40vh] opacity-35 dark:opacity-25 bg-aurora-bottom" />
-          <div className="absolute top-0 left-0 w-[300px] h-[300px] opacity-40 dark:opacity-30 bg-corner-glow-tl" />
-          <div className="absolute top-0 right-0 w-[250px] h-[250px] opacity-35 dark:opacity-25 bg-corner-glow-tr" />
-          <div className="absolute bottom-0 right-0 w-[300px] h-[300px] opacity-40 dark:opacity-30 bg-corner-glow-br" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-core-radiant rounded-full" />
-          <div className="absolute -top-40 -left-40 w-[700px] h-[700px] bg-emerald-300/60 dark:bg-emerald-500/35 rounded-full blur-3xl animate-blob" />
-          <div className="absolute -bottom-40 -right-40 w-[700px] h-[700px] bg-emerald-200/60 dark:bg-emerald-400/35 rounded-full blur-3xl animate-blob" style={{ animationDelay: '8s' }} />
-          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-emerald-100/55 dark:bg-emerald-300/32 rounded-full blur-3xl animate-blob" style={{ animationDelay: '14s' }} />
-          <div className="absolute bottom-1/3 left-1/5 w-[450px] h-[450px] bg-emerald-200/50 dark:bg-emerald-400/30 rounded-full blur-3xl animate-blob" style={{ animationDelay: '5s' }} />
-          <div className="absolute top-1/3 left-[60%] w-[400px] h-[400px] bg-emerald-400/45 dark:bg-emerald-300/25 rounded-full blur-3xl animate-blob" style={{ animationDelay: '11s' }} />
-          <div className="absolute inset-0 bg-light-sweep" />
-          <div className="absolute top-[15%] right-[15%] w-14 h-14 animate-diamond-float">
-            <div className="w-full h-full rotate-45 border-2 border-emerald-300/55 dark:border-emerald-500/40 rounded-sm bg-emerald-300/10 dark:bg-emerald-500/8" />
+        <div className={`min-h-screen overflow-x-hidden bg-transparent text-slate-900 dark:text-slate-100 transition-colors duration-300 relative ${shouldReduceEffects ? 'mobile-performance-lite' : ''}`}>
+          {/* All background effects wrapped in z-0 layer */}
+          <div className="fixed inset-0 pointer-events-none z-0" style={{ isolation: 'isolate' }}>
+            <div className="absolute inset-0 bg-noise" />
+            <div className="absolute inset-0 opacity-95 dark:opacity-55 bg-grid-lines" />
+            <div className="absolute inset-0 opacity-40 dark:opacity-30 bg-conic-spin" />
+            <div className="absolute top-0 left-0 right-0 h-[34vh] opacity-30 dark:opacity-20 bg-aurora-top" />
+            <div className="absolute bottom-0 left-0 right-0 h-[34vh] opacity-30 dark:opacity-20 bg-aurora-bottom" />
+            <div className="absolute top-0 left-0 w-[300px] h-[300px] opacity-40 dark:opacity-30 bg-corner-glow-tl" />
+            <div className="absolute top-0 right-0 w-[250px] h-[250px] opacity-35 dark:opacity-25 bg-corner-glow-tr" />
+            <div className="absolute bottom-0 right-0 w-[300px] h-[300px] opacity-40 dark:opacity-30 bg-corner-glow-br" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-core-radiant rounded-full" />
+            {!shouldReduceEffects && (
+              <>
+                <div className="absolute -top-40 -left-40 w-[700px] h-[700px] bg-emerald-300/60 dark:bg-emerald-500/35 rounded-full blur-3xl animate-blob" />
+                <div className="absolute -bottom-40 -right-40 w-[700px] h-[700px] bg-emerald-200/60 dark:bg-emerald-400/35 rounded-full blur-3xl animate-blob" style={{ animationDelay: '8s' }} />
+                <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-emerald-100/55 dark:bg-emerald-300/32 rounded-full blur-3xl animate-blob" style={{ animationDelay: '14s' }} />
+                <div className="absolute bottom-1/3 left-1/5 w-[450px] h-[450px] bg-emerald-200/50 dark:bg-emerald-400/30 rounded-full blur-3xl animate-blob" style={{ animationDelay: '5s' }} />
+                <div className="absolute top-1/3 left-[60%] w-[400px] h-[400px] bg-emerald-400/45 dark:bg-emerald-300/25 rounded-full blur-3xl animate-blob" style={{ animationDelay: '11s' }} />
+                <div className="absolute inset-0 bg-light-sweep" />
+                <div className="absolute top-[15%] right-[15%] w-14 h-14 animate-diamond-float">
+                  <div className="w-full h-full rotate-45 border-2 border-emerald-300/55 dark:border-emerald-500/40 rounded-sm bg-emerald-300/10 dark:bg-emerald-500/8" />
+                </div>
+                <div className="absolute bottom-[20%] left-[12%] w-10 h-10 animate-diamond-float" style={{ animationDelay: '-5s' }}>
+                  <div className="w-full h-full rotate-45 border-2 border-emerald-300/45 dark:border-emerald-500/30 rounded-sm bg-emerald-300/8 dark:bg-emerald-500/6" />
+                </div>
+                <div className="absolute top-[55%] left-[70%] w-8 h-8 animate-diamond-float" style={{ animationDelay: '-10s' }}>
+                  <div className="w-full h-full rotate-45 border-[1.5px] border-emerald-300/50 dark:border-emerald-500/35 rounded-sm" />
+                </div>
+                <div className="absolute top-[35%] left-[5%] w-12 h-12 animate-diamond-float" style={{ animationDelay: '-3s' }}>
+                  <div className="w-full h-full rotate-45 border-2 border-emerald-300/40 dark:border-emerald-500/28 rounded-sm bg-emerald-300/8 dark:bg-emerald-500/6" />
+                </div>
+                <div className="absolute top-[18%] right-[10%] w-40 h-40 animate-ring-float">
+                  <div className="w-full h-full rounded-full border-[3px] border-emerald-300/50 dark:border-emerald-500/35" />
+                  <div className="absolute rounded-full border-[3px] border-emerald-300/35 dark:border-emerald-500/25" style={{ inset: '1.4rem' }} />
+                  <div className="absolute rounded-full bg-emerald-300/12 dark:bg-emerald-500/10 blur-sm" style={{ inset: '0.5rem' }} />
+                </div>
+                <div className="absolute bottom-[22%] left-[8%] w-28 h-28 animate-ring-float" style={{ animationDelay: '-7s' }}>
+                  <div className="w-full h-full rounded-full border-2 border-emerald-300/45 dark:border-emerald-500/30" />
+                  <div className="absolute rounded-full border-2 border-emerald-300/30 dark:border-emerald-500/20" style={{ inset: '1rem' }} />
+                </div>
+              </>
+            )}
+            {sparkleCount > 0 && (
+              <div className="absolute inset-0 overflow-hidden">
+                {[...Array(sparkleCount)].map((_, i) => (
+                  <span
+                    key={`sparkle-${i}`}
+                    className="absolute rounded-full"
+                    style={{
+                      left: `${3 + (i * 6 + 4) % 94}%`,
+                      top: `${4 + (i * 9 + 3) % 92}%`,
+                      width: `${i % 6 === 0 ? 5 : i % 4 === 0 ? 4 : i % 3 === 0 ? 3 : 2}px`,
+                      height: `${i % 6 === 0 ? 5 : i % 4 === 0 ? 4 : i % 3 === 0 ? 3 : 2}px`,
+                      background: i % 3 === 0
+                        ? 'radial-gradient(circle, rgba(255, 255, 255, 1), rgba(200, 255, 210, 0.6))'
+                        : i % 3 === 1
+                        ? 'radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(220, 255, 225, 0.5))'
+                        : 'radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(240, 255, 245, 0.4))',
+                      boxShadow: `0 0 ${12 + (i % 5) * 8}px rgba(255, 255, 255, 0.7)`,
+                      animation: `sparkle-twinkle ${1.5 + (i % 6) * 0.7}s ease-in-out ${i * 0.35}s infinite`,
+                    }}
+                  />
+                ))}
+              </div>
+            )}
+            {orbCount > 0 && (
+              <div className="absolute inset-0" style={{ perspective: '600px' }}>
+                {[...Array(orbCount)].map((_, i) => (
+                  <span
+                    key={i}
+                    className="absolute rounded-full"
+                    style={{
+                      left: `${1 + (i * 2 + 5) % 98}%`,
+                      top: `${2 + (i * 4 + 3) % 96}%`,
+                      width: `${i % 6 === 0 ? 6 : i % 5 === 0 ? 5 : i % 4 === 0 ? 4 : i % 3 === 0 ? 3 : 2}px`,
+                      height: `${i % 6 === 0 ? 6 : i % 5 === 0 ? 5 : i % 4 === 0 ? 4 : i % 3 === 0 ? 3 : 2}px`,
+                      background: i % 5 === 0
+                        ? 'rgba(255, 255, 255, 0.95)'
+                        : i % 5 === 1
+                        ? 'rgba(220, 255, 225, 0.9)'
+                        : i % 5 === 2
+                        ? 'rgba(200, 255, 210, 0.85)'
+                        : i % 5 === 3
+                        ? 'rgba(240, 255, 245, 0.9)'
+                        : 'rgba(255, 255, 255, 0.8)',
+                      boxShadow: i % 6 === 0
+                        ? '0 0 24px rgba(255, 255, 255, 0.7)'
+                        : i % 5 === 0
+                        ? '0 0 18px rgba(200, 255, 210, 0.6)'
+                        : i % 4 === 0
+                        ? '0 0 14px rgba(220, 255, 225, 0.5)'
+                        : i % 3 === 0
+                        ? '0 0 10px rgba(240, 255, 245, 0.4)'
+                        : '0 0 6px rgba(255, 255, 255, 0.35)',
+                      animation: `float ${2 + (i % 7) * 1}s ease-in-out ${i * 0.15}s infinite`,
+                    }}
+                  />
+                ))}
+              </div>
+            )}
           </div>
-          <div className="absolute bottom-[20%] left-[12%] w-10 h-10 animate-diamond-float" style={{ animationDelay: '-5s' }}>
-            <div className="w-full h-full rotate-45 border-2 border-emerald-300/45 dark:border-emerald-500/30 rounded-sm bg-emerald-300/8 dark:bg-emerald-500/6" />
-          </div>
-          <div className="absolute top-[55%] left-[70%] w-8 h-8 animate-diamond-float" style={{ animationDelay: '-10s' }}>
-            <div className="w-full h-full rotate-45 border-[1.5px] border-emerald-300/50 dark:border-emerald-500/35 rounded-sm" />
-          </div>
-          <div className="absolute top-[35%] left-[5%] w-12 h-12 animate-diamond-float" style={{ animationDelay: '-3s' }}>
-            <div className="w-full h-full rotate-45 border-2 border-emerald-300/40 dark:border-emerald-500/28 rounded-sm bg-emerald-300/8 dark:bg-emerald-500/6" />
-          </div>
-          <div className="absolute top-[18%] right-[10%] w-40 h-40 animate-ring-float">
-            <div className="w-full h-full rounded-full border-[3px] border-emerald-300/50 dark:border-emerald-500/35" />
-            <div className="absolute rounded-full border-[3px] border-emerald-300/35 dark:border-emerald-500/25" style={{ inset: '1.4rem' }} />
-            <div className="absolute rounded-full bg-emerald-300/12 dark:bg-emerald-500/10 blur-sm" style={{ inset: '0.5rem' }} />
-          </div>
-          <div className="absolute bottom-[22%] left-[8%] w-28 h-28 animate-ring-float" style={{ animationDelay: '-7s' }}>
-            <div className="w-full h-full rounded-full border-2 border-emerald-300/45 dark:border-emerald-500/30" />
-            <div className="absolute rounded-full border-2 border-emerald-300/30 dark:border-emerald-500/20" style={{ inset: '1rem' }} />
-          </div>
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(24)].map((_, i) => (
-              <span
-                key={`sparkle-${i}`}
-                className="absolute rounded-full"
-                style={{
-                  left: `${3 + (i * 6 + 4) % 94}%`,
-                  top: `${4 + (i * 9 + 3) % 92}%`,
-                  width: `${i % 6 === 0 ? 5 : i % 4 === 0 ? 4 : i % 3 === 0 ? 3 : 2}px`,
-                  height: `${i % 6 === 0 ? 5 : i % 4 === 0 ? 4 : i % 3 === 0 ? 3 : 2}px`,
-                  background: i % 3 === 0
-                    ? 'radial-gradient(circle, rgba(255, 255, 255, 1), rgba(200, 255, 210, 0.6))'
-                    : i % 3 === 1
-                    ? 'radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(220, 255, 225, 0.5))'
-                    : 'radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(240, 255, 245, 0.4))',
-                  boxShadow: `0 0 ${12 + (i % 5) * 8}px rgba(255, 255, 255, 0.7)`,
-                  animation: `sparkle-twinkle ${1.5 + (i % 6) * 0.7}s ease-in-out ${i * 0.35}s infinite`,
-                }}
-              />
-            ))}
-          </div>
-          <div className="absolute inset-0" style={{ perspective: '600px' }}>
-            {[...Array(60)].map((_, i) => (
-              <span
-                key={i}
-                className="absolute rounded-full"
-                style={{
-                  left: `${1 + (i * 2 + 5) % 98}%`,
-                  top: `${2 + (i * 4 + 3) % 96}%`,
-                  width: `${i % 6 === 0 ? 6 : i % 5 === 0 ? 5 : i % 4 === 0 ? 4 : i % 3 === 0 ? 3 : 2}px`,
-                  height: `${i % 6 === 0 ? 6 : i % 5 === 0 ? 5 : i % 4 === 0 ? 4 : i % 3 === 0 ? 3 : 2}px`,
-                  background: i % 5 === 0
-                    ? 'rgba(255, 255, 255, 0.95)'
-                    : i % 5 === 1
-                    ? 'rgba(220, 255, 225, 0.9)'
-                    : i % 5 === 2
-                    ? 'rgba(200, 255, 210, 0.85)'
-                    : i % 5 === 3
-                    ? 'rgba(240, 255, 245, 0.9)'
-                    : 'rgba(255, 255, 255, 0.8)',
-                  boxShadow: i % 6 === 0
-                    ? '0 0 24px rgba(255, 255, 255, 0.7)'
-                    : i % 5 === 0
-                    ? '0 0 18px rgba(200, 255, 210, 0.6)'
-                    : i % 4 === 0
-                    ? '0 0 14px rgba(220, 255, 225, 0.5)'
-                    : i % 3 === 0
-                    ? '0 0 10px rgba(240, 255, 245, 0.4)'
-                    : '0 0 6px rgba(255, 255, 255, 0.35)',
-                  animation: `float ${2 + (i % 7) * 1}s ease-in-out ${i * 0.15}s infinite`,
-                }}
-              />
-            ))}
-          </div>
+          <Navbar />
+          <main className="relative z-10">
+            <Hero />
+            <About />
+            <WhyChooseUs />
+            <Components />
+            <ScopeOfSupply />
+            <SolarCalculator />
+            <OurJourney />
+            <Projects />
+            <Clients />
+            <Certifications />
+            <FAQ />
+            <Contact />
+          </main>
+          <Footer />
+          <WhatsApp />
         </div>
-        <Navbar />
-        <main className="relative z-10">
-          <Hero />
-          <About />
-          <WhyChooseUs />
-          <Components />
-          <ScopeOfSupply />
-          <SolarCalculator />
-          <OurJourney />
-          <Projects />
-          <Clients />
-          <Certifications />
-          <FAQ />
-          <Contact />
-        </main>
-        <Footer />
-        <WhatsApp />
-      </div>
       </LanguageProvider>
     </ThemeContext.Provider>
   );
