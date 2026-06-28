@@ -145,7 +145,6 @@
     animation: pulse-slow 5s ease-in-out infinite !important;
   }
   #home .animate-fade-in-up {
-    opacity: 0 !important;
     animation: fadeInUp 0.6s ease-out forwards !important;
   }
 
