@@ -18,20 +18,33 @@ function useInView(threshold = 0.1) {
   return [ref, inView] as const;
 }
 
+// Local logo file mapping
+const logoMap: Record<string, string> = {
+  'SUNGROW': '/images/logos/sungrow.svg',
+  'Adani Solar': '/images/logos/adani_solar.svg',
+  'TATA POWER': '/images/logos/tata_power.svg',
+  'VIKRAM SOLAR': '/images/logos/vikram_solar.png',
+  'GROWATT': '/images/logos/growatt.png',
+  'ReNew': '/images/logos/renew.png',
+  'POLYCAB': '/images/logos/polycab.png',
+  'HAVELLS': '/images/logos/havells.svg',
+  'WAAREE': '/images/logos/waaree.png',
+};
+
 // Brand logos with authentic colors and roles
 const partners = [
   { name: 'SUNGROW', sub: 'Inverters', role: 'Inverter Partner', color: '#2563eb', accent: '#3b82f6', domain: 'sungrowpower.com' },
   { name: 'Adani Solar', sub: 'Solar', role: 'Panel Supplier', color: '#1e3a8a', accent: '#3b82f6', domain: 'adani.com' },
   { name: 'TATA POWER', sub: 'Solar', role: 'Inverter Partner', color: '#1d4ed8', accent: '#2563eb', domain: 'tatapower.com' },
   { name: 'VIKRAM SOLAR', sub: '', role: 'Panel Supplier', color: '#7c3aed', accent: '#a855f7', domain: 'vikramsolar.com' },
-  { name: 'GROWATT', sub: 'Solar Inverter', role: 'Inverter Partner', color: '#0891b2', accent: '#06b6d4', domain: 'ginverter.com' },
+  { name: 'GROWATT', sub: 'Solar Inverter', role: 'Inverter Partner', color: '#0891b2', accent: '#06b6d4', domain: 'growatt.com' },
   { name: 'ReNew', sub: 'Power', role: 'Energy Partner', color: '#00da28', accent: '#44e844', domain: 'renew.com' },
   { name: 'POLYCAB', sub: '', role: 'Cable Supplier', color: '#d97706', accent: '#f59e0b', domain: 'polycab.com' },
   { name: 'HAVELLS', sub: '', role: 'Electrical Partner', color: '#e11d48', accent: '#f43f5e', domain: 'havells.com' },
   { name: 'WAAREE', sub: 'Solar', role: 'Panel Supplier', color: '#0d9488', accent: '#14b8a6', domain: 'waaree.com' },
 ];
 
-function LogoBadge({ p, showLogo }: { p: typeof partners[0]; showLogo: boolean }) {
+function LogoBadge({ p, showLogo, small }: { p: typeof partners[0]; showLogo: boolean; small?: boolean }) {
   const initials = p.name
     .split(/\s+/)
     .map((part) => part[0])
@@ -39,12 +52,17 @@ function LogoBadge({ p, showLogo }: { p: typeof partners[0]; showLogo: boolean }
     .slice(0, 3)
     .toUpperCase();
 
+  const localSrc = logoMap[p.name];
+  const imgClass = small
+    ? "h-6 max-w-[80px] object-contain"
+    : "h-8 max-w-[120px] object-contain";
+
   return (
     <div className="flex flex-col items-center justify-center p-2 pt-4">
       {showLogo ? (
         <img
-          src={`https://logo.clearbit.com/${p.domain}`}
-          className="h-8 max-w-[120px] object-contain mb-2"
+          src={localSrc}
+          className={`${imgClass} mb-2`}
           alt={`${p.name} logo`}
           loading="lazy"
           decoding="async"
@@ -57,7 +75,7 @@ function LogoBadge({ p, showLogo }: { p: typeof partners[0]; showLogo: boolean }
         />
       ) : (
         <div
-          className="mb-2 flex h-11 w-11 items-center justify-center rounded-2xl text-sm font-black text-white shadow-lg"
+          className={`mb-2 flex items-center justify-center rounded-2xl text-sm font-black text-white shadow-lg ${small ? 'h-9 w-9 text-xs' : 'h-11 w-11'}`}
           style={{ background: `linear-gradient(135deg, ${p.color}, ${p.accent})` }}
         >
           {initials}
@@ -138,19 +156,17 @@ export default function Clients() {
           </p>
         </div>
 
-        {/* Partner Logo Grid */}
-        <div className="grid grid-cols-1 min-[360px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 mb-12">
+        {/* Partner Logo Grid - Desktop */}
+        <div className="hidden sm:grid sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 mb-12">
           {partners.map((p, idx) => (
             <div
               key={p.name}
               className={`group bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 shadow-sm hover:shadow-xl hover:shadow-emerald-500/10 hover:border-emerald-200 dark:hover:border-emerald-800 hover:-translate-y-1 transition-all duration-300 animate-fade-in-up relative overflow-hidden ${inView ? 'opacity-100' : 'opacity-0'}`}
               style={{ animationDelay: `${0.1 + idx * 0.08}s` }}
             >
-              {/* Sheen sweep */}
               <div className="absolute -inset-x-full top-0 h-full w-[200%] bg-gradient-to-r from-transparent via-emerald-200/10 to-transparent -translate-x-[250%] group-hover:translate-x-[250%] transition-transform duration-[1.2s] ease-in-out pointer-events-none" />
-              {/* Logo box */}
               <div className="h-16 flex items-center justify-center bg-slate-50 dark:bg-slate-800/50 rounded-xl mb-4 group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-500 relative">
-                <LogoBadge p={p} showLogo={!shouldReduceEffects} />
+                <LogoBadge p={p} showLogo />
               </div>
               <div className="text-sm font-bold text-slate-900 dark:text-white relative">{p.name.replace(' SOLAR', ' Solar')}</div>
               <div className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase mt-1 relative">
@@ -158,6 +174,24 @@ export default function Clients() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Mobile Floating Carousel */}
+        <div className="sm:hidden mb-8">
+          <div className="overflow-x-auto -mx-4 px-4 scrollbar-none snap-x snap-mandatory">
+            <div className="flex gap-4 pb-4">
+              {partners.map((p, idx) => (
+                <div
+                  key={`float-${p.name}`}
+                  className="flex-shrink-0 w-[150px] snap-start bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 text-center"
+                >
+                  <div className="h-14 flex items-center justify-center">
+                    <LogoBadge p={p} showLogo small />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Featured KSE Card */}
@@ -212,32 +246,30 @@ export default function Clients() {
           </div>
         </div>
 
-        {/* Auto-scrolling carousel */}
-        {!shouldReduceEffects && (
-          <div className={`relative transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '0.5s' }}>
-            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-white dark:from-slate-900 to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-white dark:from-slate-900 to-transparent z-10 pointer-events-none" />
+        {/* Auto-scrolling carousel - Desktop */}
+        <div className={`hidden sm:block relative transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '0.5s' }}>
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-white dark:from-slate-900 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-white dark:from-slate-900 to-transparent z-10 pointer-events-none" />
 
-            <div className="flex gap-5 animate-partner-scroll">
-              {[...partners, ...partners].map((p, idx) => (
-                <div
-                  key={`scroll-${idx}`}
-                  className="flex-shrink-0 w-48 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700 p-5 shadow-sm text-center"
-                >
-                  <div className="h-12 flex items-center justify-center mb-3 hover:scale-110 transition-all duration-300">
-                    <LogoBadge p={p} showLogo />
-                  </div>
-                  <div className="text-xs font-bold text-slate-900 dark:text-white">
-                    {p.name.replace(' SOLAR', ' Solar')}
-                  </div>
-                  <div className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase mt-0.5">
-                    {t('clients.role' + p.role.replace(/\s+/g, ''))}
-                  </div>
+          <div className="flex gap-5 animate-partner-scroll">
+            {[...partners, ...partners].map((p, idx) => (
+              <div
+                key={`scroll-${idx}`}
+                className="flex-shrink-0 w-48 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700 p-5 shadow-sm text-center"
+              >
+                <div className="h-12 flex items-center justify-center mb-3 hover:scale-110 transition-all duration-300">
+                  <LogoBadge p={p} showLogo />
                 </div>
-              ))}
-            </div>
+                <div className="text-xs font-bold text-slate-900 dark:text-white">
+                  {p.name.replace(' SOLAR', ' Solar')}
+                </div>
+                <div className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase mt-0.5">
+                  {t('clients.role' + p.role.replace(/\s+/g, ''))}
+                </div>
+              </div>
+            ))}
           </div>
-        )}
+        </div>
       </div>
 
       <style>{`
@@ -251,6 +283,13 @@ export default function Clients() {
         }
         .animate-partner-scroll:hover {
           animation-play-state: paused;
+        }
+        .scrollbar-none {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-none::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
     </section>
