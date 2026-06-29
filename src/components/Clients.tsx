@@ -170,18 +170,19 @@ export default function Clients() {
           ))}
         </div>
 
-        {/* Mobile Floating Carousel */}
+        {/* Mobile Auto-Scrolling Marquee */}
         <div className="sm:hidden mb-8">
-          <div className="overflow-x-auto -mx-4 px-4 scrollbar-none snap-x snap-mandatory">
-            <div className="flex gap-3 pb-4">
-              {partners.map((p) => (
+          <div className="relative overflow-hidden">
+            <div className="absolute left-0 top-0 bottom-0 w-12 z-10 pointer-events-none bg-gradient-to-r from-white dark:from-slate-900 to-transparent" />
+            <div className="absolute right-0 top-0 bottom-0 w-12 z-10 pointer-events-none bg-gradient-to-l from-white dark:from-slate-900 to-transparent" />
+
+            <div className="flex gap-4 animate-mobile-scroll py-2">
+              {[...partners, ...partners].map((p, idx) => (
                 <div
-                  key={`float-${p.name}`}
-                  className="flex-shrink-0 w-[130px] snap-start bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-700 shadow text-center"
+                  key={`mob-scroll-${idx}`}
+                  className="flex-shrink-0 w-40 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-700 p-3.5 shadow-sm text-center"
                 >
-                  <div className="h-12 flex items-center justify-center">
-                    <LogoBadge p={p} showLogo small />
-                  </div>
+                  <LogoBadge p={p} showLogo small />
                 </div>
               ))}
             </div>
@@ -279,6 +280,26 @@ export default function Clients() {
         .animate-partner-scroll:hover {
           animation-play-state: paused;
         }
+
+        @keyframes mobile-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-mobile-scroll {
+          animation: mobile-scroll 30s linear infinite;
+          width: max-content;
+          will-change: transform;
+        }
+        .animate-mobile-scroll:hover {
+          animation-play-state: paused;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .animate-mobile-scroll {
+            animation: none;
+          }
+        }
+
         .scrollbar-none {
           -ms-overflow-style: none;
           scrollbar-width: none;
