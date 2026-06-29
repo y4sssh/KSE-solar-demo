@@ -160,7 +160,9 @@ export default function Clients() {
             >
               <div className="absolute -inset-x-full top-0 h-full w-[200%] bg-gradient-to-r from-transparent via-emerald-200/10 to-transparent -translate-x-[250%] group-hover:translate-x-[250%] transition-transform duration-[1.2s] ease-in-out pointer-events-none" />
               <div className="h-16 flex items-center justify-center bg-slate-50 dark:bg-slate-800/50 rounded-xl mb-4 group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-500 relative">
-                <LogoBadge p={p} showLogo />
+                <div className="animate-partner-float" style={{ animationDelay: `${0.1 + idx * 0.12}s` }}>
+                  <LogoBadge p={p} showLogo />
+                </div>
               </div>
               <div className="text-sm font-bold text-slate-900 dark:text-white relative">{p.name.replace(' SOLAR', ' Solar')}</div>
               <div className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase mt-1 relative">
@@ -268,6 +270,15 @@ export default function Clients() {
       </div>
 
       <style>{`
+        @keyframes partner-float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
+        }
+        .animate-partner-float {
+          animation: partner-float 4s ease-in-out infinite;
+          will-change: transform;
+        }
+
         @keyframes partner-scroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
