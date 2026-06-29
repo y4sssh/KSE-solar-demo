@@ -293,7 +293,6 @@ export default function Hero() {
                             </span>
                           </div>
                           <div className="text-[13px] sm:text-[15px] font-black text-white leading-tight">{t('hero.premiumRooftopExecution')}</div>
-                          <div className="text-[10px] text-emerald-100/70 mt-1 leading-relaxed">{t('hero.premiumRooftopDesc')}</div>
                         </div>
                         <div className="hidden sm:flex items-center justify-center rounded-xl border border-white/15 bg-black/30 backdrop-blur-sm px-3 py-2 flex-shrink-0">
                           <img src="/images/kse-logo.jpeg" alt="KSE" className="h-8 w-auto" loading="lazy" decoding="async" />

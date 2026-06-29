@@ -57,10 +57,7 @@ const translations: Record<string, { en: string; hi: string }> = {
   'hero.featuredRooftopEpc': { en: 'Featured Rooftop EPC', hi: 'फीचर्ड रूफटॉप EPC' },
   'hero.live': { en: 'LIVE', hi: 'लाइव' },
   'hero.premiumRooftopExecution': { en: 'Premium Rooftop Execution', hi: 'प्रीमियम रूफटॉप निष्पादन' },
-  'hero.premiumRooftopDesc': {
-    en: 'High-output N-Type modules with turnkey delivery.',
-    hi: 'उच्च-उत्पादन N-Type मॉड्यूल टर्नकी डिलीवरी के साथ।',
-  },
+
   'hero.systemCapacity': { en: 'System Capacity', hi: 'सिस्टम क्षमता' },
   'hero.nTypeTopconBadge': { en: 'N-Type Topcon', hi: 'N-Type Topcon' },
   'hero.premiumBifacialModule': { en: 'Premium bifacial module', hi: 'प्रीमियम बाइफेशियल मॉड्यूल' },
